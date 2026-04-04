@@ -1,6 +1,6 @@
 <?php
 
-class user extends dbcore{
+class User extends dbcore{
     
     public function __construct()
     {
