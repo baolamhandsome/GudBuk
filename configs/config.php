@@ -1,8 +1,10 @@
 <?php
+$env = parse_ini_file(__DIR__ . '/../.env');
 
-const _HOST = 'localhost';
-const _DB = 'gudbuk';
-const _USER = 'postgres';
-const _PASS = '080906';
-const _PORT = '17245';
-const _DRIVER = 'pgsql';
+define('_HOST', $env['HOST']);
+define('_DB', $env['DB']);
+define('_USER', $env['USER']);
+define('_PASS', $env['PASS']);
+define('_PORT', $env['PORT']);
+define('_DRIVER', $env['DRIVER']);
+?>
