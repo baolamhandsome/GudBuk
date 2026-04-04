@@ -1,13 +1,20 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
 
-require_once './app/models/dbcore.php';
-require_once './app/controllers/baseController.php';
-require_once './app/controllers/userController.php';
-require_once './app/models/user.php';
+	// CONTROLLER
+	// baseController should be first before requiring any controller
+	require_once __DIR__ . '/app/controllers/baseController.php';
+	require_once __DIR__ . '/app/controllers/CartController.php';
+	require_once __DIR__ . '/app/controllers/userController.php';
+	// MODELS
+	// dbcore should be loaded first as well
+	require_once __DIR__ . '/app/models/dbcore.php';
+	require_once __DIR__ . '/app/models/cart.php';
+	require_once __DIR__ . '/app/models/user.php';
+	// ROUTER
+	require_once __DIR__ . '/app/routes/web.php';
 
-$a = new userController();
-
-$a->index();
+	$web = new Web();
+	$web->run();
 ?>
