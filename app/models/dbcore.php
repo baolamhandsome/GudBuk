@@ -5,14 +5,14 @@ class dbcore{
     public function __construct(){
         $this->conn = Database::connectPDO();
     }
-//select * from table;
+	// get all rows of the query result
     public function getAll($sql){
         $stm = $this->conn -> prepare($sql);
         $stm -> execute();
         $result = $stm -> fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-//select * from table where ...
+	// get first row of the query result
     public function getOne($sql){
         $stm = $this->conn -> prepare($sql);
         $stm -> execute();
@@ -30,5 +30,10 @@ class dbcore{
     public function insert($table, $data){
         $key = array_keys($data);
     }
+
+	public function update($sql) {
+		$stm = $this->conn -> prepare($sql);
+		$stm -> execute();
+	}
 
 }

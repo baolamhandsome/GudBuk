@@ -14,5 +14,23 @@
 				";	
 			return $this->getAll($statement);
 		}
+
+		public function modifyQuantity($cart_book_id, $quantity) {
+			$statement = 
+				"UPDATE cart_book
+				SET quantity = $quantity
+				WHERE cartbookid=$cart_book_id 
+				";
+			$this->update($statement);
+		}
+
+		public function modifyTick($cart_book_id, $checked) {
+			$statement = 
+				"UPDATE cart_book
+				SET tick = $checked
+				WHERE cartbookid=$cart_book_id
+				";
+			$this->update($statement);
+		}
 	}
 ?>

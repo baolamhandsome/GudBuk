@@ -23,6 +23,8 @@ class Web {
 		$this->router -> post('/profile', 'ProfileController@index');
 
 		$this->router -> get('/cart', 'CartController@index');
+		$this->router -> post('/cart/modify', 'CartController@modify');
+		$this->router -> post('/cart/check', 'CartController@check');
 	}
 	
 	public function run() {
