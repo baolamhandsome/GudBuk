@@ -36,5 +36,16 @@
 				echo json_encode('404');
 			}
 		}
+
+		public function remove() {
+			$cart_book_id = $_POST['cart_book_id'] ?? null;
+			if (isset($cart_book_id)) {
+				$cart = new Cart();
+				$result = $cart->removeBook($cart_book_id);
+				echo json_encode("ok");
+			} else {
+				echo json_encode("404");
+			}
+		}
 	}
 ?>

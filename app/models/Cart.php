@@ -32,5 +32,12 @@
 				";
 			$this->update($statement);
 		}
+		public function removeBook($cart_book_id) {
+			$statement =
+				"DELETE FROM cart_book
+				WHERE cartbookid=$cart_book_id
+				";
+			$this->update($statement);
+		}
 	}
 ?>

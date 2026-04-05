@@ -19,12 +19,13 @@
 							</div>
 						</div>
 						<div class="order-information">
-							<input class="book-tick" data-cartbookid=<?= $entry["cartbookid"] ?> type="checkbox" <?= $entry["tick"] == 1 ? "checked" : "" ?> />
+							<button class="book-remove" data-cartbookid=<?= $entry["cartbookid"] ?> >X</button>
 							<div class="book-quantity">
 								<button class="quantity-decrease" data-cartbookid=<?= $entry["cartbookid"] ?> >-</button>
 								<div class="quantity-display"><?= $entry["quantity"] ?></div>
 								<button class="quantity-increase" data-cartbookid=<?= $entry["cartbookid"]?> >+</button>
 							</div>
+							<input class="book-tick" data-cartbookid=<?= $entry["cartbookid"] ?> type="checkbox" <?= $entry["tick"] == 1 ? "checked" : "" ?> />
 						</div>
 					</div>
 				<?php endforeach; ?>
