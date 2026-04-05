@@ -1,37 +1,40 @@
 <?php
+require_once __DIR__ . "/../cores/router.php";
+// Tạo một mảng 2 chiều get,post để lưu URL + function(behavior ra cho người dùng)
+// Nhìn chung t vẫn chưa tới đoạn để parse_URL để xử lí query
+$router = new Router();
 
-class Web {
+//thành phần thứ 2 trong hàm get() - là $action:  là cách chúng ta quy ước chức năng của url
+$router -> get('/', 'HomeController@index');
+$router -> get('/home', 'HomeController@index');
 
-	private $router;
+//====book
+$router->get('/search', 'BookController@search');    // Tìm kiếm sách (với ?query=...)
+$router->get('/book', 'BookController@show');        // Xem chi tiết sách (với ?bookid=...)
 
-	public function __construct() {
-		require_once './app/cores/router.php';
+// ===== AUTHENTICATION ROUTES =====
+$router->get('/login', 'AuthController@login');      // Hiển thị form login
+$router->post('/login', 'AuthController@handleLogin'); // Xử lý login
 
-		$this->router = new Router();
+$router->get('/register', 'AuthController@register');     // Hiển thị form register
+$router->post('/register', 'AuthController@handleRegister'); // Xử lý register
 
-		$this->router -> get('/', 'HomeController@index');
+$router->get('/logout', 'AuthController@logout');    // Đăng xuất
 
-		$this->router -> get('/login', 'AuthController@login');
-		$this->router -> post('/login', 'AuthController@login');
+// ===== USER ROUTES =====
+$router->get('/profile', 'UserController@profile');         // Xem profile của user hiện tại
+$router->post('/profile', 'UserController@updateProfile');  // Cập nhật profile
 
-		$this->router -> get('/register', 'AuthController@register');
-		$this->router -> post('/register', 'AuthController@register');   
+// ===== SHOPPING CART ROUTES =====
+$router->get('/cart', 'CartController@index');       // Xem giỏ hàng
+$router->post('/cart/add', 'CartController@add');    // Thêm sách vào giỏ
+$router->post('/cart/remove', 'CartController@remove'); // Xóa sách khỏi giỏ
+$router->post('/cart/modify', 'CartController@modify');   // Cập nhật số lượng
+$router->post('/cart/check', 'CartController@check');   // Chọn/bỏ chọn sách để order
 
-		$this->router -> get('/logout', 'AuthController@logout');
-
-		$this->router -> get('/profile', 'ProfileController@index');
-		$this->router -> post('/profile', 'ProfileController@index');
-
-		$this->router -> get('/cart', 'CartController@index');
-		$this->router -> post('/cart/modify', 'CartController@modify');
-		$this->router -> post('/cart/check', 'CartController@check');
-	}
-	
-	public function run() {
-		$method = $_SERVER['REQUEST_METHOD'];
-		$url = strtok($_SERVER['REQUEST_URI'], '?');		
-		$basePath = '/GudBuk';
-		if (str_starts_with($url, $basePath)) $url = substr($url, strlen($basePath));
-		$this->router->processURL($method, $url);
-	}
-}
+// ===== ORDER ROUTES =====
+$router->get('/order', 'OrderController@index');     // Xem trang đặt hàng
+$router->post('/order', 'OrderController@store');    // Xử lý đặt hàng
+$router->get('/order/history', 'OrderController@history'); // Xem lịch sử đơn hàng
+$router->get('/order/:id', 'OrderController@detail');     // Xem chi tiết đơn hàng
+?>

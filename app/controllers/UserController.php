@@ -1,10 +1,75 @@
 <?php 
 
-// Thao tác với DB để lấy dữ liệu -> view -> user
-class userController extends baseController{
-    public function index(){
-        $user = new user();
-        $userDetail = $user->getAllUsers();
-        $this->renderView('user',$userDetail);
+class UserController extends BaseController {
+    
+    private $user;
+    
+    public function __construct() {
+        $this->user = new User();
+    }
+    
+    /**
+     * Hiển thị danh sách users
+     */
+    public function index() {
+        // Lấy tất cả users từ database
+        $userDetail = $this->user->getAllUsers();
+        
+        ob_start();
+        $this->renderView('parts/user', ['users' => $userDetail]);
+        $data['content'] = ob_get_clean();
+        
+        $this->renderView('layouts/mainLayout', $data);
+    }
+    
+    /**
+     * Xem profile của user hiện tại
+     */
+    public function profile() {
+        // TODO: Lấy user_id từ session
+        // $userId = $_SESSION['user_id'];
+        // $userData = $this->user->findById($userId);
+        
+        $data = [
+            'user' => [] // TODO: Lấy dữ liệu từ database
+        ];
+        
+        ob_start();
+        $this->renderView('parts/profile', $data);
+        $data['content'] = ob_get_clean();
+        
+        $this->renderView('layouts/mainLayout', $data);
+    }
+    
+    /**
+     * Cập nhật profile
+     */
+    public function updateProfile() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // TODO: Validate dữ liệu từ $_POST
+            // TODO: Cập nhật trong database
+            
+            header('Location: /profile');
+            exit;
+        }
+    }
+    
+    /**
+     * Xem chi tiết user (nếu cần)
+     */
+    public function show() {
+        // TODO: Lấy user ID từ URL params
+        // $userId = $_GET['id'];
+        // $userData = $this->user->findById($userId);
+        
+        $data = [
+            'user' => [] // TODO: Lấy dữ liệu từ database
+        ];
+        
+        ob_start();
+        $this->renderView('parts/user-detail', $data);
+        $data['content'] = ob_get_clean();
+        
+        $this->renderView('layouts/mainLayout', $data);
     }
 }

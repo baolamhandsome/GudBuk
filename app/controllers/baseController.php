@@ -1,8 +1,8 @@
 <?php
 
-class baseController{
+class BaseController{
     protected function renderView($view, $data = []){
         extract($data);
-        require_once "./app/views/$view.php";
+        require_once "./app/views/parts/$view.php";
     }
 }

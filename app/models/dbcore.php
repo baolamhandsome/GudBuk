@@ -1,6 +1,6 @@
 <?php
 require_once './configs/database.php';
-class dbcore{
+class Dbcore{
     private $conn;
     public function __construct(){
         $this->conn = Database::connectPDO();
