@@ -1,0 +1,40 @@
+<?php
+// Tạo một mảng 2 chiều get,post để lưu URL + function(behavior ra cho người dùng)
+// Nhìn chung t vẫn chưa tới đoạn để parse_URL để xử lí query
+$router = new Router();
+
+//thành phần thứ 2 trong hàm get() - là $action:  là cách chúng ta quy ước chức năng của url
+$router -> get('/', 'HomeController@index');
+$router -> get('/home', 'HomeController@index');
+
+//====book
+$router->get('/search', 'BookController@search');    // Tìm kiếm sách (với ?query=...)
+$router->get('/book', 'BookController@show');        // Xem chi tiết sách (với ?bookid=...)
+
+// ===== AUTHENTICATION ROUTES =====
+$router->get('/login', 'AuthController@login');      // Hiển thị form login
+$router->post('/login', 'AuthController@handleLogin'); // Xử lý login
+
+$router->get('/register', 'AuthController@register');     // Hiển thị form register
+$router->post('/register', 'AuthController@handleRegister'); // Xử lý register
+
+$router->get('/logout', 'AuthController@logout');    // Đăng xuất
+
+// ===== USER ROUTES =====
+$router->get('/profile', 'UserController@profile');         // Xem profile của user hiện tại
+$router->post('/profile', 'UserController@updateProfile');  // Cập nhật profile
+
+// ===== SHOPPING CART ROUTES =====
+$router->get('/cart', 'CartController@index');       // Xem giỏ hàng
+
+//3 dòng dưới không biết có cần k? kiểu nó như mình có 1 thao tác trên web -> gửi REQ tới server bằng phương thức POST
+$router->post('/cart/add', 'CartController@add');    // Thêm sách vào giỏ
+$router->post('/cart/remove', 'CartController@remove'); // Xóa sách khỏi giỏ
+$router->post('/cart/update', 'CartController@update');   // Cập nhật số lượng
+
+// ===== ORDER ROUTES =====
+$router->get('/order', 'OrderController@index');     // Xem trang đặt hàng
+$router->post('/order', 'OrderController@store');    // Xử lý đặt hàng
+$router->get('/order/history', 'OrderController@history'); // Xem lịch sử đơn hàng
+$router->get('/order/:id', 'OrderController@detail');     // Xem chi tiết đơn hàng
+
