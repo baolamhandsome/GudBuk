@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "/../cores/router.php";
 // Tạo một mảng 2 chiều get,post để lưu URL + function(behavior ra cho người dùng)
 // Nhìn chung t vẫn chưa tới đoạn để parse_URL để xử lí query
 $router = new Router();
@@ -26,15 +27,14 @@ $router->post('/profile', 'UserController@updateProfile');  // Cập nhật prof
 
 // ===== SHOPPING CART ROUTES =====
 $router->get('/cart', 'CartController@index');       // Xem giỏ hàng
-
-//3 dòng dưới không biết có cần k? kiểu nó như mình có 1 thao tác trên web -> gửi REQ tới server bằng phương thức POST
 $router->post('/cart/add', 'CartController@add');    // Thêm sách vào giỏ
 $router->post('/cart/remove', 'CartController@remove'); // Xóa sách khỏi giỏ
-$router->post('/cart/update', 'CartController@update');   // Cập nhật số lượng
+$router->post('/cart/modify', 'CartController@modify');   // Cập nhật số lượng
+$router->post('/cart/check', 'CartController@check');   // Chọn/bỏ chọn sách để order
 
 // ===== ORDER ROUTES =====
 $router->get('/order', 'OrderController@index');     // Xem trang đặt hàng
 $router->post('/order', 'OrderController@store');    // Xử lý đặt hàng
 $router->get('/order/history', 'OrderController@history'); // Xem lịch sử đơn hàng
 $router->get('/order/:id', 'OrderController@detail');     // Xem chi tiết đơn hàng
-
+?>
