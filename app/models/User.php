@@ -10,4 +10,8 @@ class User extends dbcore{
     public function getAllUsers(){
         return $this->getAll("SELECT * FROM customer");
     }
+
+    public function findById($userID){
+        return $this->getOne("SELECT * FROM customer WHERE customer.UserID = '$userID'");
+    }
 }
