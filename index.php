@@ -1,20 +1,31 @@
-<!DOCTYPE html>
-<html>
+<?php
+// error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+// ===== ENTRY POINT - KHỏI ĐỘNG TOÀN BỘ ỨNG DỤNG =====
+// 1. Load toàn bộ file cần thiết
+// MODELS
+// dbcore should be first
+require_once './app/models/dbcore.php';
+require_once './app/models/User.php';
+require_once './app/models/Cart.php';
+// CONTROLLERS
+// baseController should be first
+require_once './app/controllers/baseController.php';
+//require_once './app/controllers/AuthController.php';
+require_once './app/controllers/UserController.php';
+require_once './app/controllers/CartController.php';
+// ROUTES/CORES
+require_once './app/routes/web.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <link rel="stylesheet" href="public/css/style.css">
-    <title>GudBuk</title>
-</head>
-<?php include('public/header.php'); ?>
+// 2. Lấy URL từ request
+// toàn trả về '/' thôi
+//$url = isset($_GET['url']) ? '/' . $_GET['url'] : '/';
+$url = strtok($_SERVER['REQUEST_URI'], '?');
+$basePath = '/GudBuk';
+if (str_starts_with($url, $basePath)) $url = substr($url, strlen($basePath));
+$method = $_SERVER['REQUEST_METHOD'];
 
-<body class="en">
-    <div class="img-container">
-        <img src="https://preview.redd.it/where-do-these-emojis-come-from-v0-iqvqc97fbmre1.jpeg?auto=webp&s=e5f30c35c8b5f5f657b9e99cd0a77ad2752035fa">
-    </div>
-
-</body>
-</html>
+// 3. Khởi động router và xử lý request
+$router->processURL($method, $url);
+?>
