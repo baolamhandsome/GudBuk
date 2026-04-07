@@ -26,9 +26,23 @@ class Dbcore{
         $stm -> execute();
         return $stm -> rowCount();
     }
-// insert into table set col1 = val1, col2 = val2 where id = 1;
+    // insert into table set col1 = val1, col2 = val2 where id = 1;
     public function insert($table, $data){
         $key = array_keys($data);
+        $val = array_values($data);
+        
+        // Tạo danh sách cột: col1, col2, col3
+        $columns = implode(',', $key);
+        
+        // Tạo danh sách placeholder: ?, ?, ?
+        $placeholders = implode(',', array_fill(0, count($key), '?'));
+        
+        // Tạo SQL query
+        $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+        
+        // Prepare và execute với parameterized query
+        $stm = $this->conn->prepare($sql);
+        return $stm->execute($val);
     }
 
 	public function update($sql) {

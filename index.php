@@ -2,6 +2,7 @@
 // error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+session_start();
 // ===== ENTRY POINT - KHỏI ĐỘNG TOÀN BỘ ỨNG DỤNG =====
 // 1. Load toàn bộ file cần thiết
 // MODELS
@@ -26,6 +27,11 @@ $basePath = '/GudBuk';
 if (str_starts_with($url, $basePath)) $url = substr($url, strlen($basePath));
 $method = $_SERVER['REQUEST_METHOD'];
 
-// 3. Khởi động router và xử lý request
+//DEBUG : 
+//echo "$method $url \n"; // Dòng này không nên bật khi đang code cart do sẽ làm khóa view ??
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
 $router->processURL($method, $url);
+
 ?>
