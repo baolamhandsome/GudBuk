@@ -9,10 +9,6 @@
 <body>
     <div class="register-container">
         <div class="register-card">
-            <div class="register-header">
-                <h2>Create Account</h2>
-                <p>Join us today and start shopping</p>
-            </div>
             
             <form class="register-form" id="registerForm" method="POST" action="/GudBuk/register" novalidate>
                 <!-- Email input field -->
@@ -89,17 +85,8 @@
                     <span class="btn-loader"></span>
                 </button>
             </form>
-
-            <!-- Link to login page for existing users -->
-            <div class="login-link">
-                <p>Already have an account? <a href="/GudBuk/login">Sign in here</a></p>
-            </div>
-
-            <!-- Success message -->
-            <div class="success-message" id="successMessage">
-                <div class="success-icon">✓</div>
-                <h3>Account Created!</h3>
-                <p>Redirecting to login page...</p>
+             <div class="login-link">
+                <p>Already have an account? <a href="/GudBuk/login">Login</a></p>
             </div>
         </div>
     </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimal Login Form</title>
+    <title>Basic Login Form</title>
     <link rel="stylesheet" href="/GudBuk/public/css/login.css">
 </head>
 <body>
@@ -11,37 +11,37 @@
         <div class="login-card">
             <div class="login-header">
                 <h2>Sign In</h2>
-                <p>Enter your credentials to continue</p>
+                <p>Enter your credentials to access your account</p>
             </div>
             
-            <form class="login-form" id="loginForm" method="POST" action="/GudBuk/login" novalidate>
+            <form class="login-form" id="loginForm" novalidate>
                 <div class="form-group">
                     <div class="input-wrapper">
-                        <input type="text" id="username" name="username" required autocomplete="username">
-                        <label for="username">Username</label>
+                        <input type="email" id="email" name="email" required autocomplete="email">
+                        <label for="email">Email Address</label>
                     </div>
-                    <span class="error-message" id="usernameError"></span>
+                    <span class="error-message" id="emailError"></span>
                 </div>
 
                 <div class="form-group">
-                    <div class="input-wrapper">
+                    <div class="input-wrapper password-wrapper">
                         <input type="password" id="password" name="password" required autocomplete="current-password">
                         <label for="password">Password</label>
                         <button type="button" class="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
-                            <span class="toggle-icon"></span>
+                            <span class="eye-icon"></span>
                         </button>
                     </div>
                     <span class="error-message" id="passwordError"></span>
                 </div>
 
                 <div class="form-options">
-                    <div class="remember-wrapper">
+                    <label class="remember-wrapper">
                         <input type="checkbox" id="remember" name="remember">
-                        <label for="remember" class="checkbox-label">
+                        <span class="checkbox-label">
                             <span class="checkmark"></span>
                             Remember me
-                        </label>
-                    </div>
+                        </span>
+                    </label>
                     <a href="#" class="forgot-password">Forgot password?</a>
                 </div>
 
@@ -57,12 +57,12 @@
 
             <div class="success-message" id="successMessage">
                 <div class="success-icon">✓</div>
-                <h3>Welcome back!</h3>
+                <h3>Login Successful!</h3>
                 <p>Redirecting to your dashboard...</p>
             </div>
         </div>
     </div>
 
-    <script type="text/javascript" src="/GudBuk/public/js/login.js"></script>
+    <script src="/GudBuk/public/js/login.js"></script>
 </body>
 </html>

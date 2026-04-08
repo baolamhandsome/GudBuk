@@ -1,133 +1,106 @@
-// Minimal Login Form JavaScript
-class MinimalLoginForm {
+// Basic Login Form Script
+class BasicLoginForm {
     constructor() {
         this.form = document.getElementById('loginForm');
-        this.usernameInput = document.getElementById('username');
+        this.emailInput = document.getElementById('email');
         this.passwordInput = document.getElementById('password');
         this.passwordToggle = document.getElementById('passwordToggle');
-        this.submitButton = this.form.querySelector('.login-btn');
         this.successMessage = document.getElementById('successMessage');
         
         this.init();
     }
     
     init() {
-        this.bindEvents();
-        this.setupPasswordToggle();
-    }
-    
-    bindEvents() {
-        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-        this.usernameInput.addEventListener('blur', () => this.validateUsername());
-        this.passwordInput.addEventListener('blur', () => this.validatePassword());
-        this.usernameInput.addEventListener('input', () => this.clearError('username'));
-        this.passwordInput.addEventListener('input', () => this.clearError('password'));
-    }
-    
-    setupPasswordToggle() {
-        this.passwordToggle.addEventListener('click', () => {
-            const type = this.passwordInput.type === 'password' ? 'text' : 'password';
-            this.passwordInput.type = type;
-            
-            const icon = this.passwordToggle.querySelector('.toggle-icon');
-            icon.classList.toggle('show-password', type === 'text');
-        });
-    }
-    
-    validateUsername() {
-        const username = this.usernameInput.value.trim();
+        // Initialize shared utilities
+        FormUtils.addSharedAnimations();
+        FormUtils.setupFloatingLabels(this.form);
+        FormUtils.setupPasswordToggle(this.passwordInput, this.passwordToggle);
         
-        if (!username) {
-            this.showError('username', 'Username is required');
-            return false;
+        // Add event listeners
+        this.form.addEventListener('submit', this.handleSubmit.bind(this));
+        this.emailInput.addEventListener('input', () => this.validateField('email'));
+        this.passwordInput.addEventListener('input', () => this.validateField('password'));
+        
+        // Add entrance animation
+        FormUtils.addEntranceAnimation(this.form.closest('.login-card'), 100);
+    }
+    
+    validateField(fieldName) {
+        const input = document.getElementById(fieldName);
+        const value = input.value.trim();
+        let validation;
+        
+        // Clear previous errors
+        FormUtils.clearError(fieldName);
+        
+        // Validate based on field type
+        if (fieldName === 'email') {
+            validation = FormUtils.validateEmail(value);
+        } else if (fieldName === 'password') {
+            validation = FormUtils.validatePassword(value);
         }
         
-        if (username.length < 1) {
-            this.showError('username', 'Username must be at least 1 character');
+        if (!validation.isValid && value !== '') {
+            FormUtils.showError(fieldName, validation.message);
             return false;
+        } else if (validation.isValid) {
+            FormUtils.showSuccess(fieldName);
+            return true;
         }
         
-        this.clearError('username');
         return true;
-    }
-    
-    validatePassword() {
-        const password = this.passwordInput.value;
-        
-        if (!password) {
-            this.showError('password', 'Password is required');
-            return false;
-        }
-        
-        if (password.length < 1) {
-            this.showError('password', 'Password must be at least 1 character');
-            return false;
-        }
-        
-        this.clearError('password');
-        return true;
-    }
-    
-    showError(field, message) {
-        const formGroup = document.getElementById(field).closest('.form-group');
-        const errorElement = document.getElementById(`${field}Error`);
-        
-        formGroup.classList.add('error');
-        errorElement.textContent = message;
-        errorElement.classList.add('show');
-    }
-    
-    clearError(field) {
-        const formGroup = document.getElementById(field).closest('.form-group');
-        const errorElement = document.getElementById(`${field}Error`);
-        
-        formGroup.classList.remove('error');
-        errorElement.classList.remove('show');
-        setTimeout(() => {
-            errorElement.textContent = '';
-        }, 200);
     }
     
     async handleSubmit(e) {
         e.preventDefault();
         
-        const isUsernameValid = this.validateUsername();
-        const isPasswordValid = this.validatePassword();
+        const email = this.emailInput.value.trim();
+        const password = this.passwordInput.value.trim();
         
-        if (!isUsernameValid || !isPasswordValid) {
+        // Validate all fields
+        const emailValid = this.validateField('email');
+        const passwordValid = this.validateField('password');
+        
+        if (!emailValid || !passwordValid) {
+            FormUtils.showNotification('Please fix the errors below', 'error', this.form);
             return;
         }
         
-        this.setLoading(true);
+        // Show loading state
+        const submitBtn = this.form.querySelector('.login-btn');
+        submitBtn.classList.add('loading');
         
         try {
-            // Submit form to server
-            this.form.submit();
+            // Simulate login process
+            await FormUtils.simulateLogin(email, password);
+            
+            // Show success state
+            this.showSuccess();
+            
         } catch (error) {
-            this.showError('username', 'Login failed. Please try again.');
+            // Show error notification
+            FormUtils.showNotification(error.message, 'error', this.form);
         } finally {
-            this.setLoading(false);
+            // Remove loading state
+            submitBtn.classList.remove('loading');
         }
     }
     
-    setLoading(loading) {
-        this.submitButton.classList.toggle('loading', loading);
-        this.submitButton.disabled = loading;
-    }
-    
     showSuccess() {
+        // Hide the form
         this.form.style.display = 'none';
+        
+        // Show success message
         this.successMessage.classList.add('show');
         
         // Simulate redirect after 2 seconds
         setTimeout(() => {
-            console.log('Redirecting to dashboard...');
-            // window.location.href = '/dashboard';
+            FormUtils.showNotification('Redirecting to dashboard...', 'success', this.successMessage);
         }, 2000);
     }
 }
 
 // Initialize the form when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new MinimalLoginForm();
+    new BasicLoginForm();
 });

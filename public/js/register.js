@@ -23,14 +23,15 @@ class MinimalRegisterForm {
     }
     
     bindEvents() {
-        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        this.form.addEventListener('submit', () => this.handleSubmit());
         
         // Email validation
-        this.emailInput.addEventListener('blur', () => this.validateEmail());
+        //set blur / foccusout event for email input
+        this.emailInput.addEventListener('blur', () => this.validateEmail('email'));
         this.emailInput.addEventListener('input', () => this.clearError('email'));
         
         // Name validation
-        this.nameInput.addEventListener('blur', () => this.validateName());
+        this.nameInput.addEventListener('blur', () => this.validateName('name'));
         this.nameInput.addEventListener('input', () => this.clearError('name'));
         
         // Password validation
@@ -186,12 +187,12 @@ class MinimalRegisterForm {
         }, 200);
     }
     
-    async handleSubmit(e) {
+    async handleSubmit() {
         e.preventDefault();
         
         // Validate all required fields
-        const isEmailValid = this.validateEmail();
-        const isNameValid = this.validateName();
+        const isEmailValid = this.validateEmail('email');
+        const isNameValid = this.validateName('name');
         const isPasswordValid = this.validatePassword();
         const isPasswordConfirmValid = this.validatePasswordConfirm();
         const isTermsValid = this.validateTerms();
@@ -227,7 +228,7 @@ class MinimalRegisterForm {
         // Simulate redirect after 2 seconds
         setTimeout(() => {
             console.log('Redirecting to login page...');
-            // window.location.href = '/GudBuk/login';
+            window.location.href = '/GudBuk/login';
         }, 2000);
     }
 }
