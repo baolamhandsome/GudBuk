@@ -4,6 +4,8 @@ require_once __DIR__ . "/../cores/router.php";
 // Nhìn chung t vẫn chưa tới đoạn để parse_URL để xử lí query
 $router = new Router();
 
+$basePath = '/GudBuk';
+
 //thành phần thứ 2 trong hàm get() - là $action:  là cách chúng ta quy ước chức năng của url
 $router -> get('/', 'HomeController@index');
 $router -> get('/home', 'HomeController@index');
