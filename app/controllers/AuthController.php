@@ -40,8 +40,11 @@ class AuthController extends BaseController{
         $have = $this->userModel->getUserByUsername($username);
 
         if($have == NULL){
-            $this->userModel->createUser($_POST);
-            echo 'đăng kí thành công';
+            $insertUser = $this->userModel->createUser($_POST);
+            if($insertUser)
+                echo 'đăng kí thành công';
+            else 
+                echo "đăng kí không thành công";
         }
         else{
             echo "tên người dùng đã tồn tại";

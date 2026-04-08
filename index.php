@@ -13,7 +13,7 @@ require_once './app/models/Cart.php';
 // CONTROLLERS
 // baseController should be first
 require_once './app/controllers/baseController.php';
-//require_once './app/controllers/AuthController.php';
+require_once './app/controllers/AuthController.php';
 require_once './app/controllers/UserController.php';
 require_once './app/controllers/CartController.php';
 // ROUTES/CORES
@@ -28,10 +28,12 @@ if (str_starts_with($url, $basePath)) $url = substr($url, strlen($basePath));
 $method = $_SERVER['REQUEST_METHOD'];
 
 //DEBUG : 
-//echo "$method $url \n"; // Dòng này không nên bật khi đang code cart do sẽ làm khóa view ??
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
+ // Dòng này không nên bật khi đang code cart do sẽ làm khóa view ??
+ //echo "$method $url \n";
+//echo '<pre>';
+//print_r($_SESSION);
+//echo '</pre>';
+
 $router->processURL($method, $url);
 
 ?>
