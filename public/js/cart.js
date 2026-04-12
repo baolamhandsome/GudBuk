@@ -66,8 +66,6 @@ for (let index = 0; index < increaseButtonList.length; index++) {
 
 const checkboxList = document.getElementsByClassName("book-tick");
 
-console.log(checkboxList);
-
 for (let index = 0; index < checkboxList.length; index++) {
 	const button = checkboxList.item(index);
 	const cart_book_id = button.dataset.cartbookid;
@@ -85,3 +83,11 @@ for (let index = 0; index < checkboxList.length; index++) {
 		.catch(err => console.log(err));
 	})
 }
+
+const orderButton = document.getElementsByClassName("order-button")[0];
+
+const userid = orderButton.dataset.userid;
+
+orderButton.addEventListener("click", function() {
+	window.location.href = `orderPreview?userid=${userid}`;
+})

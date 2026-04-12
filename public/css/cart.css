@@ -24,6 +24,7 @@
 	row-gap: 10px;
 
 	overflow-y: auto;
+	position: relative;
 }
 
 .book {
@@ -105,4 +106,28 @@
 
 .book-remove:hover, .quantity-decrease:hover, .quantity-increase:hover {
 	filter: brightness(0.8)
+}
+
+.order-button {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background-color: #2FA084;
+
+	height: 7%;
+	aspect-ratio: 3;
+
+	border-radius: 5px 0px 0px 0px;
+	border-width: 0px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.order-button:hover {
+	filter: brightness(0.8);
 }

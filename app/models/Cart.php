@@ -6,7 +6,7 @@
 
 		public function getCart($userID) {
 			$statement = "
-				SELECT book.name, book.author, book.isbm, cartbookid, quantity, tick
+				SELECT userid, book.name, book.author, book.isbm, cartbookid, quantity, tick
 				FROM customer, cart, cart_book, book
 				WHERE customer.cartid = cart.cartid 
 				AND cart.cartid = cart_book.cartid 

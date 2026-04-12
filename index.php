@@ -10,12 +10,14 @@ session_start();
 require_once './app/models/dbcore.php';
 require_once './app/models/User.php';
 require_once './app/models/Cart.php';
+require_once './app/models/Order.php';
 // CONTROLLERS
 // baseController should be first
 require_once './app/controllers/baseController.php';
 require_once './app/controllers/AuthController.php';
 require_once './app/controllers/UserController.php';
 require_once './app/controllers/CartController.php';
+require_once './app/controllers/OrderController.php';
 // ROUTES/CORES
 require_once './app/routes/web.php';
 
