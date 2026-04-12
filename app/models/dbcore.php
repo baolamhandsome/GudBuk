@@ -73,12 +73,12 @@ class Dbcore{
         $placeholders = implode(',', array_fill(0, count($key), '?'));
         
         // Tạo SQL query
-        $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+        $sql = "INSERT INTO $table ($columns) VALUES ($placeholders) RETURNING $returning";
         
         // Prepare và execute với parameterized query
         $stm = $this->conn->prepare($sql);
         $stm->execute($val);
-		$stm->fetchColumn();
+		return $stm->fetchColumn();
 	}
 
 	public function update($sql) {
