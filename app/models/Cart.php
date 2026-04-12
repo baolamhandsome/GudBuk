@@ -5,13 +5,13 @@
 		}	
 
 		public function getCart($userID) {
-			$statement = 
-				"SELECT * 
-				FROM cart, cart_book, book
-				WHERE cart.cartID = cart_book.bookID
-				AND cart_book.bookID = book.BookID
-				AND cart_book.userID = $userID
-				";	
+			$statement = "
+				SELECT book.name, book.author, book.isbm, cartbookid, quantity, tick
+				FROM customer, cart, cart_book, book
+				WHERE customer.cartid = cart.cartid 
+				AND cart.cartid = cart_book.cartid 
+				AND book.bookid = cart_book.bookid
+				AND userid = $userID";	
 			return $this->getAll($statement);
 		}
 
