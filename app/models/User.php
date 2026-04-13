@@ -44,10 +44,12 @@ class User extends dbcore{
      * @return bool - True if successful, false otherwise
      */
     public function createUser($data){
+		$cartid = $this->insertReturn('cart', [], 'cartid');
         // Chuẩn bị dữ liệu để insert
         $insertData = array(
             'name' => $data['name'],
-            'password' =>  $data['password']// Hash mật khẩu
+			'password' =>  $data['password'], // Hash mật khẩu
+			'cartid' => $cartid
             //password_hash($data['passwword'], PASSWORD_BCRYPT),
             //'email' => $data['email']
         );
