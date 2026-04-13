@@ -9,36 +9,36 @@ class UserController extends BaseController {
     }
     
     /**
-     * Hiển thị danh sách users
+     * Hiển thị danh sách users dành cho admin
      */
     public function index() {
         // Lấy tất cả users từ database
         $userDetail = $this->user->getAllUsers();
         
         ob_start();
-        $this->renderView('parts/user', ['users' => $userDetail]);
+        $this->renderView('profile', ['users' => $userDetail]);
         $data['content'] = ob_get_clean();
         
-        $this->renderView('layouts/mainLayout', $data);
+        //$this->renderView('layouts/mainLayout', $data);
     }
     
     /**
-     * Xem profile của user hiện tại
+     * Xem profile của user hiện tại User view
      */
     public function profile() {
         // TODO: Lấy user_id từ session
-        // $userId = $_SESSION['user_id'];
-        // $userData = $this->user->findById($userId);
+        //$userId = $_SESSION['user_id'];
+        $userId = 1;
+        $userData = $this->user->findById($userId);
+
+        // TODO: Lấy dữ liệu từ database
+        $data = ['user' => $userData ];
         
-        $data = [
-            'user' => [] // TODO: Lấy dữ liệu từ database
-        ];
+        //ob_start();
+        $this->renderView('profile', $data);
+        //$data['content'] = ob_get_clean();
         
-        ob_start();
-        $this->renderView('parts/profile', $data);
-        $data['content'] = ob_get_clean();
-        
-        $this->renderView('layouts/mainLayout', $data);
+        //$this->renderView('mainLayout', $data);
     }
     
     /**
