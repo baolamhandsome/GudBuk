@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
+
+:root {
+    --yellow: #fed330;
+    --red: #e74c3c;
+    --white: #fff;
+    --black: #222;
+    --light-color: #777;
+    --border: .2rem solid var(--black);
+    --green: #244d4d;
+    --light-color-2: #779;
+    --light-bt: #f6fbf6;
+    --border-green: .1rem solid #244d4d;
+    --box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    --dark-shadow: 0 0 0 100vw rgba(0,0,0,.5);
+}
+
+* {
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: .2s linear;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+html::-webkit-scrollbar {
+    width: 1rem;
+}
+
+html::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: aquamarine;
+}
+
+.header {
+    padding: 2rem 9%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--light-bt);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: var(--green);
+    font-weight: bolder;
+}
+
+.logo i {
+    padding-right: .3rem;
+}
+
+.search-form {
+    height: 5rem;
+    width: 50rem;
+    border-radius: 5rem;
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border: var(--border-green);
+}
+
+.search-form input {
+    height: 100%;
+    width: 100%;
+    padding: 0 1.2rem;
+    font-size: 1.6rem;
+    color: green;
+    text-transform: none;
+}
+
+.search-form label {
+    font-size: 2.2rem;
+    padding-right: 1.7rem;
+    cursor: pointer;
+    color: green;
+}
+
+.search-form label:hover {
+    color: var(--light-color-2);
+}
+.img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icons div {
+    margin-left: 2rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: green;
+}
+
+#user-btn {
+    color: green;
+    font-size: 2.5rem;
+    margin-left: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#cart-btn {
+    color: green;
+    font-size: 2.5rem;
+    margin-left: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+#user-btn:hover {
+    color: var(--light-color-2);
+}
+
+
+.icons div:hover {
+    color: var(--light-color-2);
+}
+
+#search-btn{
+    display: none;
+}
+
