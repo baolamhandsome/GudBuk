@@ -25,6 +25,9 @@ class User extends dbcore{
         // TODO: Remember to use parameterized queries for security!
     }
 
+    public function findById($userId){
+        return $this->getOne("SELECT * FROM customer WHERE userid=$userId");
+    }
     /**
      * Get user by username
      * @param string $username - User username
