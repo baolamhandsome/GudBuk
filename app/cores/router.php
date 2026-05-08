@@ -11,7 +11,7 @@ class Router {
 
     //define cách xử lí 1 url : ví dụ 1 req có dạng : get('user','userController@index')
     public function processURL($method, $url){
-        
+        echo $url;
         $url = ($url) ? : '/';//nếu url rỗng thì trả đưa người dùng về /home
         //nếu tồn tại url thì :
         if(isset($this->routers[$method][$url])){
@@ -24,7 +24,7 @@ class Router {
             $useController = new $controller();
             $useController -> $function();
         }else {
-            echo '404';
+            echo '404 Router';
         }
     }
 }

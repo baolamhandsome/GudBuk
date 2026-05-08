@@ -4,11 +4,11 @@ require_once __DIR__ . "/../cores/router.php";
 // Nhìn chung t vẫn chưa tới đoạn để parse_URL để xử lí query
 $router = new Router();
 
-$basePath = '/GudBuk';
+$basePath = '/gudbuk';
 
 //thành phần thứ 2 trong hàm get() - là $action:  là cách chúng ta quy ước chức năng của url
-$router -> get('/', 'HomeController@index');
-$router -> get('/home', 'HomeController@index');
+$router->get('/', 'HomeController@index');
+$router->get('/home', 'HomeController@index');
 
 //====book
 $router->get('/search', 'BookController@search');    // Tìm kiếm sách (với ?query=...)
@@ -39,4 +39,3 @@ $router->get('/order', 'OrderController@index');     // Xem trang đặt hàng
 $router->post('/order', 'OrderController@store');    // Xử lý đặt hàng
 $router->get('/order/history', 'OrderController@history'); // Xem lịch sử đơn hàng
 $router->get('/order/:id', 'OrderController@detail');     // Xem chi tiết đơn hàng
-?>

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account - Register</title>
     <link rel="stylesheet" href="/GudBuk/public/css/register.css">
 </head>
+
 <body>
     <div class="register-container">
         <div class="register-card">
-            
+
             <form class="register-form" id="registerForm" method="POST" action="/GudBuk/register" novalidate>
                 <!-- Email input field -->
                 <div class="form-group">
@@ -85,7 +87,7 @@
                     <span class="btn-loader"></span>
                 </button>
             </form>
-             <div class="login-link">
+            <div class="login-link">
                 <p>Already have an account? <a href="/GudBuk/login">Login</a></p>
             </div>
         </div>
@@ -93,4 +95,5 @@
 
     <script type="text/javascript" src="/GudBuk/public/js/register.js"></script>
 </body>
+
 </html>
