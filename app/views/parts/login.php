@@ -1,3 +1,9 @@
+<!-- 
++ Validate data, done in file login.js
++ check email + pw -> create token -> insert into DB with expired day
++ redirect -> /home
+ -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,6 +53,7 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="/GudBuk/public/js/login.js"></script>
 </body>
 
 </html>

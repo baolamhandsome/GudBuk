@@ -1,4 +1,4 @@
-// Minimal Register Form JavaScript
+// This js just the logic of the form (validate input data if it's in the right form or not)
 class MinimalRegisterForm {
     constructor() {
         this.form = document.getElementById('registerForm');

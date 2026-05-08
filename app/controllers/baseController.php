@@ -4,7 +4,7 @@ class BaseController
 {
     protected function renderView($view, $data = [])
     {
-        extract($data); //truyền data vài cho view
+        extract($data);
         require_once "./app/views/parts/$view.php";
     }
     public function redirect($path)

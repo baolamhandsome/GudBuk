@@ -30,39 +30,59 @@ class AuthController extends BaseController
         $this->renderView('login');
     }
 
+    /*
++ Validate data : email(getOne) 
++ Manage bug (by using json_encode)
++ redirect the right way instead of using renderView() -> use href in login.js
+*/
     public function handleLogin()
     {
+        // echo '<pre>';
+        // print_r($_POST);
+        // echo '</pre>';
+
         $email = $_POST['email'];
         $password = $_POST['password'];
 
         $have = $this->userModel->getUserByEmail($email);
 
-        if ($have == NULL) {
-            echo "Email hoặc mật khẩu không đúng";
-            $this->renderView('login');
+        if (!$email || !$password) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Email hoặc mật khẩu không đúng'
+            ]);
         } else {
-            if ($password != $have['password']) {
-                echo "Eamil hoặc mật khẩu không đúng";
-                $this->renderView('login');
+            if ($have == null || ($have && $have['password'] != $password)) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Email hoặc mật khẩu không đúng!'
+                ]);
             } else {
-                echo "dang nhap thanh cong";
                 $token = sha1(uniqid() . time());
-                // Tính thời gian hết hạn token (24 giờ sau)
+                $live = 86400;
+                setcookie(
+                    'token',
+                    $token,
+                    [
+                        'expires' => time() + $live,
+                        'path' => '/',
+                        'httponly' => true,  // ← JS không thể access
+                        'secure' => true,    // ← Chỉ gửi qua HTTPS
+                        'samesite' => 'Strict'  // ← Chống CSRF
+                    ]
+                );
                 $data = [
-                    'token' => $token,
+                    'tokenid' => $token,
                     'userid' => $have['userid'],
-                    'expires_at' => date('Y-m-d H:i:s', time() + 86400),
-                    // 'created_at' và 'last_used_at' được database tự xử lý với DEFAULT CURRENT_TIMESTAMP
+                    'expires_at' => date('Y-m-d H:i:s', time() + $live),
                 ];
                 $this->userModel->insert('token_login', $data);
+
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Đăng nhập thành công',
+                ]);
             }
         }
-    }
-
-    public function logout()
-    {
-        // TODO: 1. Destroy the session using session_destroy()
-        // TODO: 2. Clear $_SESSION array
-        // TODO: 3. Redirect to home page
     }
 }

@@ -28,11 +28,11 @@ $router->get('/profile', 'UserController@profile');         // Xem profile của
 $router->post('/profile', 'UserController@updateProfile');  // Cập nhật profile
 
 // ===== SHOPPING CART ROUTES =====
-$router->get('/cart', 'CartController@index');       // Xem giỏ hàng
-$router->post('/cart/add', 'CartController@add');    // Thêm sách vào giỏ
-$router->post('/cart/remove', 'CartController@remove'); // Xóa sách khỏi giỏ
-$router->post('/cart/modify', 'CartController@modify');   // Cập nhật số lượng
-$router->post('/cart/check', 'CartController@check');   // Chọn/bỏ chọn sách để order
+$router->get('/cart', 'CartController@index', ['AuthMiddleware']);       // Xem giỏ hàng
+$router->post('/cart/add', 'CartController@add', ['AuthMiddleware']);    // Thêm sách vào giỏ
+$router->post('/cart/remove', 'CartController@remove', ['AuthMiddleware']); // Xóa sách khỏi giỏ
+$router->post('/cart/modify', 'CartController@modify', ['AuthMiddleware']);   // Cập nhật số lượng
+$router->post('/cart/check', 'CartController@check', ['AuthMiddleware']);   // Chọn/bỏ chọn sách để order
 
 // ===== ORDER ROUTES =====
 $router->get('/order', 'OrderController@index');     // Xem trang đặt hàng

@@ -2,7 +2,8 @@
 // error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-session_start();
+//session_start();
+
 // ===== ENTRY POINT - KHỏI ĐỘNG TOÀN BỘ ỨNG DỤNG =====
 // 1. Load toàn bộ file cần thiết
 // MODELS
@@ -22,6 +23,7 @@ require_once './app/routes/web.php';
 // 2. Lấy URL từ request
 // toàn trả về '/' thôi
 //$url = isset($_GET['url']) ? '/' . $_GET['url'] : '/';
+
 $url = strtok($_SERVER['REQUEST_URI'], '?');
 $basePath = '/gudbuk';
 if (str_starts_with($url, $basePath)) $url = substr($url, strlen($basePath));
@@ -30,8 +32,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 //DEBUG : 
 // Dòng này không nên bật khi đang code cart do sẽ làm khóa view ??
 //echo "$method $url \n";
-echo '<pre>';
-print_r($_REQUEST);
-echo '</pre>';
+
+// echo '<pre>';
+// print_r($_REQUEST);
+// echo '</pre>';
 
 $router->processURL($method, $url);
