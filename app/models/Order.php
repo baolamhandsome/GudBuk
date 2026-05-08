@@ -44,8 +44,8 @@
 
 		public function getOrder($orderid) {
 			$statement = "
-				SELECT * FROM order_book
-				WHERE orderid = $orderid	
+				SELECT * FROM order_book, book
+				WHERE order_book.bookid = book.bookid AND orderid = $orderid	
 			";
 			return $this->getAll($statement);
 		}

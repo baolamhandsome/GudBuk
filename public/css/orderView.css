@@ -1,0 +1,101 @@
+.order-container {
+	height: 100vh;
+	width: 100vw;
+	background-color: #CFECF3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.order-list {
+	height: 90%;
+	width: 95%;
+	background-color: #7DAACB;
+
+	padding: 20px;
+	/* padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px; */
+	box-sizing: border-box;
+
+	border-radius: 10px;
+	
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	row-gap: 10px;
+
+	overflow-y: auto;
+	position: relative;
+}
+
+.book-container {
+	width: 97%;
+	background-color: #FFFDEB;
+	
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+
+	border-radius: 10px;
+
+	padding: 20px;
+}
+
+.name-author-container {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.name {
+	height: 50%;
+	width: 100%;
+	font-weight: bold;
+	font-size: 35px;
+}
+
+.author {
+	height: 50%;
+	width: 100%;
+	font-size: 22.5px;
+}
+
+.quantity-price-container {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	gap: 15px;
+}
+
+.quantity {
+	height: 50%;
+	font-size: 25px;
+}
+
+.price {
+	height: 50%;
+	font-size: 25px;
+}
+
+.total-price-container {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+
+	background-color: #2FA084;
+
+	font-size: 25px;
+
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 1em;
+	padding-right: 1em;
+
+	border-radius: 5px 0 0 0;
+}
+
