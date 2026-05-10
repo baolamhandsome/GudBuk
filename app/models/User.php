@@ -1,6 +1,6 @@
 <?php
 
-class User extends dbcore
+class User extends Dbcore
 {
 
     public function __construct()
@@ -31,7 +31,7 @@ class User extends dbcore
         $cartid = $this->insertReturn('cart', [], 'cartid');
         // Chuẩn bị dữ liệu để insert
         $insertData = array(
-            'name' => $data['name'],
+            'name' => $data['fullname'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'address' => $data['address'],

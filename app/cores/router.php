@@ -28,14 +28,16 @@ class Router
             $route = $this->routers[$method][$url];
             $action = $route['action'];
 
-            // Vì middleware có thể null ở một số route
+            //Vì middleware có thể null ở một số route
             $middlewares = $route['middleware'] ?? [];
-            foreach ($middlewares as $middlewareClass) {
-                require_once "./app/middlewares/$middlewareClass.php";
-                $middleware = new $middlewareClass();
-                $check = $middleware->handle();
+            if ($middlewares) {
+                foreach ($middlewares as $middlewareClass) {
+                    require_once "./app/middlewares/$middlewareClass.php";
+                    $middleware = new $middlewareClass();
+                    $check = $middleware->handle();
 
-                if (!$check) return;
+                    if (!$check) redirect('http://localhost/gudbuk/login');
+                }
             }
 
             // truncate thành 2 chuỗi con bởi kí tự @

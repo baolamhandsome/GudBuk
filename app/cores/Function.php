@@ -9,6 +9,15 @@ function isPost()
     return ($_SERVER['REQUEST_METHOD'] == 'POST');
 }
 
+function redirect($path)
+{
+    header("Location: $path");
+}
 
-//handle the input fields
-function filterData($method) {}
+function request($success, $message)
+{
+    echo json_encode([
+        'success' => $success,
+        'message' => $message
+    ]);
+}

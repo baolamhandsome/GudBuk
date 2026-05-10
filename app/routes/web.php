@@ -15,17 +15,17 @@ $router->get('/search', 'BookController@search');    // Tìm kiếm sách (với
 $router->get('/book', 'BookController@show');        // Xem chi tiết sách (với ?bookid=...)
 
 // ===== AUTHENTICATION ROUTES =====
-$router->get('/login', 'AuthController@login');      // Hiển thị form login
-$router->post('/login', 'AuthController@handleLogin'); // Xử lý login
+$router->get('/login', 'AuthController@login', []);      // Hiển thị form login
+$router->post('/login', 'AuthController@handleLogin', []); // Xử lý login
 
-$router->get('/register', 'AuthController@register');     // Hiển thị form register
-$router->post('/register', 'AuthController@handleRegister'); // Xử lý register
+$router->get('/register', 'AuthController@register', []);     // Hiển thị form register
+$router->post('/register', 'AuthController@handleRegister', []); // Xử lý register
 
-$router->get('/logout', 'AuthController@logout');    // Đăng xuất
+$router->get('/logout', 'AuthController@logout', []);    // Đăng xuất
 
 // ===== USER ROUTES =====
-$router->get('/profile', 'UserController@profile');         // Xem profile của user hiện tại
-$router->post('/profile', 'UserController@updateProfile');  // Cập nhật profile
+$router->get('/profile', 'UserController@profile', ['AuthMiddleware']);         // Xem profile của user hiện tại
+$router->post('/profile', 'UserController@updateProfile', ['AuthMiddleware']);  // Cập nhật profile
 
 // ===== SHOPPING CART ROUTES =====
 $router->get('/cart', 'CartController@index', ['AuthMiddleware']);       // Xem giỏ hàng
@@ -35,7 +35,7 @@ $router->post('/cart/modify', 'CartController@modify', ['AuthMiddleware']);   //
 $router->post('/cart/check', 'CartController@check', ['AuthMiddleware']);   // Chọn/bỏ chọn sách để order
 
 // ===== ORDER ROUTES =====
-$router->get('/order', 'OrderController@index');     // Xem trang đặt hàng
-$router->post('/order', 'OrderController@store');    // Xử lý đặt hàng
-$router->get('/order/history', 'OrderController@history'); // Xem lịch sử đơn hàng
-$router->get('/order/:id', 'OrderController@detail');     // Xem chi tiết đơn hàng
+$router->get('/order', 'OrderController@index', ['AuthMiddleware']);     // Xem trang đặt hàng
+$router->post('/order', 'OrderController@store', ['AuthMiddleware']);    // Xử lý đặt hàng
+$router->get('/order/history', 'OrderController@history', ['AuthMiddleware']); // Xem lịch sử đơn hàng
+$router->get('/order/:id', 'OrderController@detail', ['AuthMiddleware']);     // Xem chi tiết đơn hàng

@@ -12,7 +12,7 @@
     <div class="register-container">
         <div class="register-card">
 
-            <form class="register-form" id="registerForm" method="POST" action="/GudBuk/register" novalidate>
+            <form class="register-form" id="registerForm" method="POST" novalidate>
                 <!-- Email input field -->
                 <div class="form-group">
                     <div class="input-wrapper">

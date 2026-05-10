@@ -4,7 +4,7 @@ for (let index = 0; index < deleteButtonList.length; index++) {
 	const button = deleteButtonList.item(index);
 	const cart_book_id = button.dataset.cartbookid;
 	button.addEventListener("click", function () {
-		fetch(`/GudBuk/cart/remove`, {
+		fetch(`/gudbuk/cart/remove`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: `cart_book_id=${cart_book_id}`
@@ -27,7 +27,7 @@ for (let index = 0; index < decreaseButtonList.length; index++) {
 		const parentDiv = button.parentElement;
 		const quantityDiv = parentDiv.querySelector(".quantity-display");
 		const quantity = Math.max(parseInt(quantityDiv.textContent) - 1, 1);
-		fetch(`/GudBuk/cart/modify`, {
+		fetch(`/gudbuk/cart/modify`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: `cart_book_id=${cart_book_id}&quantity=${quantity}`
@@ -50,7 +50,7 @@ for (let index = 0; index < increaseButtonList.length; index++) {
 		const parentDiv = button.parentElement;
 		const quantityDiv = parentDiv.querySelector(".quantity-display");
 		const quantity = parseInt(quantityDiv.textContent) + 1;
-		fetch(`/GudBuk/cart/modify`, {
+		fetch(`/gudbuk/cart/modify`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: `cart_book_id=${cart_book_id}&quantity=${quantity}`
@@ -73,7 +73,7 @@ for (let index = 0; index < checkboxList.length; index++) {
 	const cart_book_id = button.dataset.cartbookid;
 	button.addEventListener("change", function () {
 		const checked = button.checked ? 1 : 0;
-		fetch(`/GudBuk/cart/check`, {
+		fetch(`/gudbuk/cart/check`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: `cart_book_id=${cart_book_id}&checked=${checked}`

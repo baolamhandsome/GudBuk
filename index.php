@@ -2,23 +2,29 @@
 // error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-//session_start();
+
+// hàm tạo mới session tạo mới phiên / chạy tiếp phiên cũ nếu tồn tại
+session_start();
 
 // ===== ENTRY POINT - KHỏI ĐỘNG TOÀN BỘ ỨNG DỤNG =====
 // 1. Load toàn bộ file cần thiết
 // MODELS
 // dbcore should be first
-require_once './app/models/dbcore.php';
+require_once './app/models/Dbcore.php';
 require_once './app/models/User.php';
 require_once './app/models/Cart.php';
+require_once './app/models/tokenLogin.php';
+
 // CONTROLLERS
-// baseController should be first
 require_once './app/controllers/baseController.php';
 require_once './app/controllers/AuthController.php';
 require_once './app/controllers/UserController.php';
 require_once './app/controllers/CartController.php';
+
 // ROUTES/CORES
 require_once './app/routes/web.php';
+
+require_once './app/cores/Function.php';
 
 // 2. Lấy URL từ request
 // toàn trả về '/' thôi

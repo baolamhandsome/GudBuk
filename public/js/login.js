@@ -16,7 +16,6 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
     const data = await response.json();
 
-    console.log('Data:', data);
     if (data.success) {
         window.location.href = 'http://localhost/gudbuk/home';
     } else {

@@ -32,7 +32,15 @@ class Dbcore
         $stm->execute();
         return $stm->rowCount();
     }
-    // insert into table set col1 = val1, col2 = val2 where id = 1;
+
+
+    /*
+        $data = [
+            'key1' => value1;
+            ...
+        ]
+        $sql = "INSERT INTO $table ('key1',...) VALUES (':value1',...);  
+    */
     public function insert($table, $data)
     {
         // no parameters are provided
@@ -88,6 +96,7 @@ class Dbcore
         $stm->execute($val);
         return $stm->fetchColumn();
     }
+
 
     public function update($sql)
     {
