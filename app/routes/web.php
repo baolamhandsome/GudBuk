@@ -35,6 +35,9 @@ $router->post('/cart/modify', 'CartController@modify');   // Cập nhật số l
 $router->post('/cart/check', 'CartController@check');   // Chọn/bỏ chọn sách để order
 
 // ===== ORDER ROUTES =====
+$router->get('/orderPreview', 'OrderController@orderPreview'); // preview đơn hàng sắp đặt
+$router->post('/placeOrder', 'OrderController@placeOrder'); // Đặt hàng
+$router->get('/orderView', 'OrderController@viewOrder');    // coi đơn hàng
 $router->get('/order', 'OrderController@index');     // Xem trang đặt hàng
 $router->post('/order', 'OrderController@store');    // Xử lý đặt hàng
 $router->get('/order/history', 'OrderController@history'); // Xem lịch sử đơn hàng
