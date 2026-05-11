@@ -3,23 +3,43 @@ class Router
 {
     protected $routers = [];
     //2 hàm dưới là tương ứng 2 hàm gán URL + function vào mảng thôi
-    public function get($url, $action)
+    public function get($url, $action, $middleware = [])
     {
-        $this->routers['GET'][$url] = $action;
+        $this->routers['GET'][$url] = [
+            'action' => $action,
+            'middleware' => $middleware
+        ];
     }
-    public function post($url, $action)
+    public function post($url, $action, $middleware = [])
     {
-        $this->routers['POST'][$url] = $action;
+        $this->routers['POST'][$url] = [
+            'action' => $action,
+            'middleware' => $middleware
+        ];
     }
 
     //define cách xử lí 1 url : ví dụ 1 req có dạng : get('user','userController@index')
     public function processURL($method, $url)
     {
-
         $url = ($url) ?: '/'; //nếu url rỗng thì trả đưa người dùng về /home
         //nếu tồn tại url thì :
         if (isset($this->routers[$method][$url])) {
-            $action = $this->routers[$method][$url];
+
+            $route = $this->routers[$method][$url];
+            $action = $route['action'];
+
+            //Vì middleware có thể null ở một số route
+            $middlewares = $route['middleware'] ?? [];
+            if ($middlewares) {
+                foreach ($middlewares as $middlewareClass) {
+                    require_once "./app/middlewares/$middlewareClass.php";
+                    $middleware = new $middlewareClass();
+                    $check = $middleware->handle();
+
+                    if (!$check) redirect('http://localhost/gudbuk/login');
+                }
+            }
+
             // truncate thành 2 chuỗi con bởi kí tự @
             [$controller, $function] = explode('@', $action);
 
