@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Login Form</title>
     <link rel="stylesheet" href="/GudBuk/public/css/login.css">
 </head>
+
 <body>
     <div class="login-container">
         <div class="login-card">
@@ -13,7 +15,7 @@
                 <h2>Sign In</h2>
                 <p>Enter your credentials to access your account</p>
             </div>
-            
+
             <form class="login-form" id="loginForm" novalidate>
                 <div class="form-group">
                     <div class="input-wrapper">
@@ -52,7 +54,7 @@
             </form>
 
             <div class="signup-link">
-                <p>Don't have an account? <a href="/GudBuk/register">Create one</a></p>
+                <p>Don't have an account? <a href="/gudbuk/register">Create one</a></p>
             </div>
 
             <div class="success-message" id="successMessage">
@@ -65,4 +67,5 @@
 
     <script src="/GudBuk/public/js/login.js"></script>
 </body>
+
 </html>

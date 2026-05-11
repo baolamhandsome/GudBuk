@@ -25,17 +25,15 @@ require_once './app/routes/web.php';
 // toàn trả về '/' thôi
 //$url = isset($_GET['url']) ? '/' . $_GET['url'] : '/';
 $url = strtok($_SERVER['REQUEST_URI'], '?');
-$basePath = '/GudBuk';
+$basePath = '/gudbuk';
 if (str_starts_with($url, $basePath)) $url = substr($url, strlen($basePath));
 $method = $_SERVER['REQUEST_METHOD'];
 
 //DEBUG : 
- // Dòng này không nên bật khi đang code cart do sẽ làm khóa view ??
- //echo "$method $url \n";
+// Dòng này không nên bật khi đang code cart do sẽ làm khóa view ??
+//echo "$method $url \n";
 //echo '<pre>';
 //print_r($_SESSION);
 //echo '</pre>';
 
 $router->processURL($method, $url);
-
-?>
