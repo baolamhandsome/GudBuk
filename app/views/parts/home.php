@@ -5,7 +5,7 @@ echo "TRANG CHỦ";
 <html lang="en">
 
 <div class="signup-link">
-    <p>New to this site? <a href="/gudbuk/logout">Logout</a></p>
+    <p>I'm bored <a href="/gudbuk/logout">Logout</a></p>
 </div>
 
 <div class="signup-link">
