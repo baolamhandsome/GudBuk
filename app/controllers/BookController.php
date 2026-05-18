@@ -11,5 +11,13 @@ class BookController extends baseController
     {
         $bookid = $_GET['bookid'];
         $bookdata = $this->bookModel->getOneBook($bookid);
+
+        $this->renderView('book', [$bookdata]);
+    }
+    public function search()
+    {
+        $query = $_GET['query'] ?? '';
+        $results = $this->bookModel->searchBooks($query);
+        $this->renderView('search', ['results' => $results, 'query' => $query]);
     }
 }
