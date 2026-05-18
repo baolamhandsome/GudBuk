@@ -21,5 +21,10 @@ class Book extends Dbcore
         return $result;
     }
     public function searchBook() {}
-    public function getOneBook() {}
+    public function getOneBook($bookid)
+    {
+        $sql = "SELECT * FROM book WHERE bookid = $bookid";
+        $result = $this->getOne($sql);
+        return $result;
+    }
 }

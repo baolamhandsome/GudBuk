@@ -23,6 +23,7 @@ require_once './app/controllers/AuthController.php';
 require_once './app/controllers/UserController.php';
 require_once './app/controllers/CartController.php';
 require_once './app/controllers/OrderController.php';
+require_once './app/controllers/BookController.php';
 require_once './app/controllers/HomeController.php';
 
 // ROUTES/CORES

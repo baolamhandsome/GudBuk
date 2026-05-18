@@ -37,7 +37,7 @@ body {
 
 /* Individual Book Card */
 .book-card {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -168,9 +168,9 @@ body {
 }
 
 .pagination-btn {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     color: #701c21;
-    border: 2px solid white;
+    border: 2px solid rgb(255, 255, 255);
     padding: 10px 16px;
     border-radius: 8px;
     cursor: pointer;

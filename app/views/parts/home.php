@@ -16,14 +16,14 @@ $maxpage = $data[2] ?? 1;
 </head>
 
 <body>
-    <div class="books-container">
-        <h1 class="page-title">Trang Chủ</h1>
 
+    <h1 class="page-title">Trang Chủ</h1>
+    <div class="books-container">
         <!-- Books Grid -->
         <div class="books-grid">
             <?php if (!empty($bestBook)): ?>
                 <?php foreach ($bestBook as $book): ?>
-                    <div class="book-card">
+                    <div class="book-card" data-bookid="<?php echo $book['bookid']; ?>">
                         <!-- Book Image -->
                         <div class="book-image-container">
                             <img src="/GudBuk/asset/<?php echo $book['bookid']; ?>.jpg"
@@ -50,15 +50,7 @@ $maxpage = $data[2] ?? 1;
                                         <?php echo number_format($book['price'] ?? 0, 0, ',', '.'); ?>
                                     </span>
                                     <span class="book-price-currency">$</span>
-                                    <?php if (!empty($book['discount'])): ?>
-                                        <span class="book-discount-badge">-<?php echo htmlspecialchars($book['discount']); ?>%</span>
-                                    <?php endif; ?>
                                 </div>
-                                <?php if (!empty($book['original_price'])): ?>
-                                    <p class="book-price-original">
-                                        <?php echo number_format($book['original_price'], 0, ',', '.'); ?> đ
-                                    </p>
-                                <?php endif; ?>
                             </div>
 
                             <!-- Sold Info -->
@@ -105,7 +97,7 @@ $maxpage = $data[2] ?? 1;
             <a href="/gudbuk/register" style="color: #333; text-decoration: underline;">Signup</a>
         </p>
     </div>
-
+    <script src="/GudBuk/public/js/home.js"></script>
 </body>
 
 </html>
