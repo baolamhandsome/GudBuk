@@ -14,14 +14,17 @@ require_once './app/models/Dbcore.php';
 require_once './app/models/User.php';
 require_once './app/models/Cart.php';
 require_once './app/models/tokenLogin.php';
-
+require_once './app/models/Book.php';
 require_once './app/models/Order.php';
+
 // CONTROLLERS
 require_once './app/controllers/baseController.php';
 require_once './app/controllers/AuthController.php';
 require_once './app/controllers/UserController.php';
 require_once './app/controllers/CartController.php';
 require_once './app/controllers/OrderController.php';
+require_once './app/controllers/HomeController.php';
+
 // ROUTES/CORES
 require_once './app/routes/web.php';
 
@@ -41,7 +44,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 //echo "$method $url \n";
 
 // echo '<pre>';
-// print_r($_REQUEST);
+// print_r($_POST);
 // echo '</pre>';
 
 $router->processURL($method, $url);
