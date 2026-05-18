@@ -6,5 +6,3 @@ $this->renderView('fixed_components/footer');
 // render phần riêng (phần content) cho từng url một
 
 // ta đã nhúng view từ /parts/user -> main layout
-
-echo $data;

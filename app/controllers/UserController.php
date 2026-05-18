@@ -26,17 +26,17 @@ class UserController extends BaseController {
      * Xem profile của user hiện tại User view
      */
     public function profile() {
-        // TODO: Lấy user_id từ session
-        //$userId = $_SESSION['user_id'];
-        $userId = 3;
-        $userData = $this->user->findById($userId);
+        // TODO: Lấy username từ session
+        
+        $name = $_GET['name'];
+        $userData = $this->user->getUserByUsername($name);
 
         // TODO: Lấy dữ liệu từ database
-        //$data = ['user' => $userData ];
+        $data = ['user' => $userData ];
         
         //ob_start();
-        $this->renderView('profile', $userData);
-       // $data['content'] = ob_get_clean();
+        $this->renderView('profile', $data);
+        //$data['content'] = ob_get_clean();
         
         //$this->renderView('mainLayout', $data);
     }
