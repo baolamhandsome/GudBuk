@@ -14,17 +14,19 @@
     <title>gudbuk</title>
 </head>
 <header class="header">
-    <a href="../parts/home.php" class="logo">gudbuk.</a>
+    <a href="/gudbuk/home" class="logo">gudbuk.</a>
 
-    <form action="" class="search-form">
+    <form action="/gudbuk/search" class="search-form">
         <input type="search" id="search-box" placeholder="Find book by tile, author...">
         <label for="search-box" class="fas fa-search"></label>
     </form>
     <div class="icons">
-        <a href="cart.html" id="cart-btn" class="fas fa-shopping-cart"></a>
+        <a href="/gudbuk/cart" id="cart-btn" class="fas fa-shopping-cart"></a>
         <div id="search-btn" class="fas fa-search"></div>
-        <a href="../app/routes/profile.php" id="user-btn" class="fas fa-user"></a>
-        <div id="menu-btn" class="fas fa-sign-out"></div>
+        <a href="/gudbuk/profile" id="user-btn" class="fas fa-user"></a>
+        <div class="fas fa-sign-out">
+            <a href="/gudbuk/logout"></a>
+        </div>
     </div>
 
 </header>
