@@ -11,7 +11,9 @@
 <body>
     <div class="register-container">
         <div class="register-card">
-
+            <div class="register-header">
+                <h2>Sign Out</h2>
+            </div>
             <form class="register-form" id="registerForm" method="POST" novalidate>
                 <!-- Email input field -->
                 <div class="form-group">

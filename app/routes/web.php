@@ -8,8 +8,9 @@ $basePath = '/gudbuk';
 
 //thành phần thứ 2 trong hàm get() - là $action:  là cách chúng ta quy ước chức năng của url
 $router->get('/', 'HomeController@index');
-$router->get('/home', 'HomeController@index');
+$router->get('/home', 'HomeController@index'); // xử lí phân trang bằng tham số (?curpage=)
 
+$router->post('/home', 'HomeController');
 //====book
 $router->get('/search', 'BookController@search');    // Tìm kiếm sách (với ?query=...)
 $router->get('/book', 'BookController@show');        // Xem chi tiết sách (với ?bookid=...)
