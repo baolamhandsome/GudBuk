@@ -25,7 +25,98 @@
     text-decoration: none;
     transition: .2s linear;
 }
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+}
 
-.container{
+.profile-container{
+    max-width: 480px;
+    width: 100%;
+    background: var(--white);
+    border-radius: 3%;
+    padding: 4%;
+    box-shadow: var(--box-shadow);
+}
+.title{
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+}
+.user-info p{
+    font-size: 0.95rem;
+    color: var(--black);
+    margin-top: 0.2rem;
+}
+.user-info label{
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--light-color);
+    margin-top: 1rem;
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+.info-field {
+    padding: 0.6rem 0;
+    border-bottom: .1rem solid #eee;
+}
+.info-field:last-of-type {
+    border-bottom: none;
+}
+.info-field label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--light-color);
+    margin-bottom: 0.25rem;
+}
 
+.info-field p {
+    font-size: 0.95rem;
+    color: var(--black);
+    font-weight: 400;
+}
+
+.edit-profile {
+    margin-top: 1.25rem;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #2563eb;
+    color: var(--white);
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 0.03em;
+}
+
+.edit-profile:hover {
+    background-color: #073daf;
+}
+
+.icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+#profile-icon{
+    font-size: 5rem;
+    color: #636d81;
+    margin-bottom: 1.5rem;
 }
