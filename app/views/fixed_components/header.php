@@ -1,6 +1,4 @@
-<?php
-
-?>
+<?php ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +11,7 @@
     <link rel="stylesheet" href="/GudBuk/public/css/header.css">
     <title>gudbuk</title>
 </head>
+<body>
 <header class="header">
     <a href="../parts/home.php" class="logo">gudbuk.</a>
 
@@ -26,7 +25,5 @@
         <a href="../app/routes/profile.php" id="user-btn" class="fas fa-user"></a>
         <div id="menu-btn" class="fas fa-sign-out"></div>
     </div>
-
 </header>
 
-</html>
