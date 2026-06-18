@@ -89,5 +89,7 @@ const orderButton = document.getElementsByClassName("order-button")[0];
 const userid = orderButton.dataset.userid;
 
 orderButton.addEventListener("click", function () {
-	window.location.href = `orderPreview?userid=${userid}`;
+	if (userid != "") {
+		window.location.href = `orderPreview?userid=${userid}`;
+	}
 })

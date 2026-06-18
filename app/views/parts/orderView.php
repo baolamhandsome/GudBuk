@@ -2,7 +2,7 @@
 //var_dump($data);
 $total = 0;
 foreach ($data as $entry) {
-	$total += $entry['price'] * $entry['quantity'];
+	$total += $entry['unit_price'] * $entry['quantity'];
 }
 ?>
 
@@ -21,7 +21,7 @@ foreach ($data as $entry) {
 				<div class="book-container">
 					<div class="name-author-container">
 						<div class="name">
-							<?= $entry['name'] ?>
+							<?= $entry['title'] ?>
 						</div>
 						<div class="author">
 							<?= $entry['author'] ?>
@@ -32,7 +32,7 @@ foreach ($data as $entry) {
 							<?= $entry['quantity'] ?> books
 						</div>
 						<div class="price">
-							<?= $entry['price'] * $entry['quantity'] ?>$
+							<?= $entry['unit_price'] * $entry['quantity'] ?>$
 						</div>
 					</div>
 				</div>

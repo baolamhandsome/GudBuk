@@ -12,7 +12,7 @@
 			<?php foreach ($data as $entry): ?>
 				<div class="book-container">
 					<div class="name-container">
-						<?= $entry['name'] ?>
+						<?= $entry['title'] ?>
 					</div>
 					<div class="price-container">
 						<?= $entry['price'] * $entry['quantity'] ?>$
@@ -26,7 +26,7 @@
 				foreach ($data as $entry) $total += $entry['price'] * $entry['quantity'];
 				echo "<div class=\"total-price\">{$total}$</div>";
 				?>
-				<button class="order-button" data-userid=<?= $entry['userid'] ?>>Order</button>
+				<button class="order-button" data-userid=<?= $entry['customerid'] ?>>Order</button>
 			</div>
 		</div>
 	</div>
