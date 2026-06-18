@@ -12,14 +12,18 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
     line-height: 1.6;
+
+    flex-direction: column;
 }
 
 .login-container {
-    width: 100%;
-    max-width: 400px;
+    /* Chiều cao header (104px) + một chút khoảng cách */
+    /* Khoảng cách với footer */
+    position: relative;
+    z-index: 101;
+    margin-top: 50px;
+    /* Lớn hơn z-index: 100 của header */
 }
 
 .login-card {
@@ -83,8 +87,8 @@ body {
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-.input-wrapper input:focus + label,
-.input-wrapper input:valid + label {
+.input-wrapper input:focus+label,
+.input-wrapper input:valid+label {
     transform: translateY(-32px) scale(0.85);
     color: #3b82f6;
     font-weight: 500;
@@ -176,12 +180,12 @@ body {
     background: #ffffff;
 }
 
-.remember-wrapper input[type="checkbox"]:checked + .checkbox-label .checkmark {
+.remember-wrapper input[type="checkbox"]:checked+.checkbox-label .checkmark {
     background: #3b82f6;
     border-color: #3b82f6;
 }
 
-.remember-wrapper input[type="checkbox"]:checked + .checkbox-label .checkmark::after {
+.remember-wrapper input[type="checkbox"]:checked+.checkbox-label .checkmark::after {
     content: '✓';
     color: white;
     font-size: 10px;
@@ -354,8 +358,13 @@ body {
 
 /* Animations */
 @keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 /* Mobile Responsive */
@@ -363,15 +372,15 @@ body {
     body {
         padding: 16px;
     }
-    
+
     .login-card {
         padding: 24px;
     }
-    
+
     .login-header h2 {
         font-size: 1.5rem;
     }
-    
+
     .form-options {
         flex-direction: column;
         align-items: flex-start;

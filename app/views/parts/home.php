@@ -17,7 +17,7 @@ $maxpage = $data[2] ?? 1;
 
 <body>
 
-    <h1 class="page-title">Trang Chủ</h1>
+    <h1 class="page-title"></h1>
     <div class="books-container">
         <!-- Books Grid -->
         <div class="books-grid">

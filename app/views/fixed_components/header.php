@@ -14,19 +14,26 @@
     <title>gudbuk</title>
 </head>
 <header class="header">
-    <a href="/gudbuk/home" class="logo">gudbuk.</a>
+    <a href="/gudbuk/home" class="logo">GudBuk.</a>
 
-    <form action="/gudbuk/search" class="search-form">
+    <form action="/gudbuk/book/search" class="search-form">
         <input type="search" id="search-box" placeholder="Find book by tile, author...">
         <label for="search-box" class="fas fa-search"></label>
     </form>
     <div class="icons">
-        <a href="/gudbuk/cart" id="cart-btn" class="fas fa-shopping-cart"></a>
-        <div id="search-btn" class="fas fa-search"></div>
-        <a href="/gudbuk/profile" id="user-btn" class="fas fa-user"></a>
-        <div class="fas fa-sign-out">
-            <a href="/gudbuk/logout"></a>
-        </div>
+
+        <a href="/gudbuk/cart">
+            <div id=" cart-btn" class="fas fa-shopping-cart">
+            </div>
+        </a>
+
+        <a href="/gudbuk/user">
+            <div id="user-btn" class="fas fa-user"></div>
+        </a>
+
+        <a href="/gudbuk/logout">
+            <div id=" logout-btn" class="fas fa-sign-out-alt"></div>
+        </a>
     </div>
 
 </header>

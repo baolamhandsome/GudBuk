@@ -1,44 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
+
 * {
     font-family: 'Rubik', sans-serif;
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
     outline: none;
     border: none;
     text-decoration: none;
     transition: .2s linear;
 }
-.footer{
+
+.footer {
     padding-top: 30px;
-    background-color: #F6FBF6;
+    margin-top: auto;
+    background-color: #b06d36;
+    width: 100%;
 }
 
-.footer-container{
+.footer-container {
+    align-items: flex-end;
     padding-bottom: 30px;
     display: flex;
     margin: auto;
-    color: #254D4D;
+    color: #ffffff;
     justify-content: space-around;
 }
-.logo-div{
+
+.logo-div {
     align-items: center;
     display: flex;
 }
-.footer-bottom{
+
+.footer-bottom {
     margin: auto;
-    text-align: center ;
-    padding-bottom: 20px;
-    background-color: #1a202c;
+    text-align: center;
+    padding-top: 20px;
+    background-color: #ffffff;
 }
-.list a{
+
+.list a {
     color: #254D4D;
     text-decoration: none;
 }
-.list a:hover{
+
+.list a:hover {
     color: #1a202c;
 }
-.list li{
+
+.list li {
     width: auto;
     list-style-type: none;
     text-align: left;
