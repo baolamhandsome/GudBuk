@@ -17,7 +17,7 @@ class BookController extends baseController
     public function search()
     {
         $query = $_GET['query'] ?? '';
-        $results = $this->bookModel->searchBooks($query);
-        $this->renderView('search', ['results' => $results, 'query' => $query]);
+        $data = $this->bookModel->searchBook($query);
+        $this->renderView('home', [$data]);
     }
 }

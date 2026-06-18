@@ -20,7 +20,16 @@ class Book extends Dbcore
         $result = $this->getAll($sql);
         return $result;
     }
-    public function searchBook() {}
+    public function searchBook($query)
+    {
+        $sql = "SELECT * FROM book WHERE is_active = TRUE AND (title ILIKE '%$query%' OR author ILIKE '%$query%')";
+
+        $result = $this->getAll($sql);
+
+        return $result;
+    }
+
+
     public function getOneBook($bookid)
     {
         $sql = "SELECT * FROM book WHERE bookid = $bookid";

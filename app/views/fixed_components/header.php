@@ -16,9 +16,12 @@
 <header class="header">
     <a href="/gudbuk/home" class="logo">GudBuk.</a>
 
-    <form action="/gudbuk/book/search" class="search-form">
-        <input type="search" id="search-box" placeholder="Find book by tile, author...">
-        <label for="search-box" class="fas fa-search"></label>
+    <form action="/gudbuk/search" method="GET" class="search-form">
+        <input type="search" name="query" id="search-box" placeholder="Find book by title, author...">
+
+        <button type="submit" id="search-submit-btn" style="background: none; border: none; cursor: pointer;">
+            <i class="fas fa-search"></i>
+        </button>
     </form>
     <div class="icons">
 

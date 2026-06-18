@@ -16,7 +16,7 @@ require_once './app/models/Cart.php';
 require_once './app/models/tokenLogin.php';
 require_once './app/models/Book.php';
 require_once './app/models/Order.php';
-
+require_once './app/models/Category.php';
 // CONTROLLERS
 require_once './app/controllers/baseController.php';
 require_once './app/controllers/AuthController.php';
@@ -42,10 +42,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 //DEBUG : 
 // Dòng này không nên bật khi đang code cart do sẽ làm khóa view ??
-//echo "$method $url \n";
-
+// echo "$method $url \n";
 // echo '<pre>';
-// print_r($_POST);
+// print_r($_GET);
 // echo '</pre>';
 
 $router->processURL($method, $url);

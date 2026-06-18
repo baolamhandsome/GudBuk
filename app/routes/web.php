@@ -12,8 +12,8 @@ $router->get('/home', 'HomeController@index'); // xử lí phân trang bằng th
 
 $router->post('/home', 'HomeController');
 //====book
-$router->get('/search', 'BookController@search');    // Tìm kiếm sách (với ?query=...)
-$router->get('/book', 'BookController@show');        // Xem chi tiết sách (với ?bookid=...)
+$router->get('/search', 'BookController@search', []);    // Tìm kiếm sách (với ?query=...)
+$router->get('/book', 'BookController@show', []);        // Xem chi tiết sách (với ?bookid=...)
 
 // ===== AUTHENTICATION ROUTES =====
 $router->get('/login', 'AuthController@login', []);      // Hiển thị form login
