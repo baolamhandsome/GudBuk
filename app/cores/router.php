@@ -34,9 +34,20 @@ class Router
                 foreach ($middlewares as $middlewareClass) {
                     require_once "./app/middlewares/$middlewareClass.php";
                     $middleware = new $middlewareClass();
-                    $check = $middleware->handle();
+                    $role = $middleware->handle();
 
-                    if (!$check) redirect('http://localhost/gudbuk/login');
+                    if (!$role) {
+                        redirect('http://localhost/gudbuk/login');
+                        exit();
+                    }
+                    if (strpos($url, '/admin-dashboard') === 0) {
+                        if ($role != "ADMIN") {
+                            // Người dùng thường cố vào trang admin
+                            header("HTTP/1.1 403 Forbidden");
+                            echo "<h1>403 - Lỗi bảo mật</h1><p>Bạn không có quyền truy cập trang quản trị!</p>";
+                            exit();
+                        }
+                    }
                 }
             }
 

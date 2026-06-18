@@ -10,6 +10,11 @@
 
 class AuthMiddleware
 {
+    private $userModel;
+    public function __construct()
+    {
+        $this->userModel = new User();
+    }
     public function handle()
     {
         $token_login = $_COOKIE['token_login'] ?? null;
@@ -24,6 +29,9 @@ class AuthMiddleware
             // ko tồn tại hoặc hết hạn
             return false;
         }
-        return true;
+        if ($tokenData['customerid'] == 1) {
+            return "ADMIN";
+        }
+        return "USER";
     }
 }

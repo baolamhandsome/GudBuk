@@ -21,8 +21,13 @@ class User extends Dbcore
 
     public function getUserByUsername($username)
     {
-        // Escape để tránh SQL Injection
         $sql = "SELECT * FROM customer WHERE name = '$username'";
+        return $this->getOne($sql);
+    }
+
+    public function getUserByUserID($id)
+    {
+        $sql = "SELECT * FROM customer WHERE customerID = $id";
         return $this->getOne($sql);
     }
 

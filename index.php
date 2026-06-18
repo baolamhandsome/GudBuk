@@ -25,7 +25,7 @@ require_once './app/controllers/CartController.php';
 require_once './app/controllers/OrderController.php';
 require_once './app/controllers/BookController.php';
 require_once './app/controllers/HomeController.php';
-
+require_once './app/controllers/AdminController.php';
 // ROUTES/CORES
 require_once './app/routes/web.php';
 

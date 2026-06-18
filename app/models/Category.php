@@ -6,10 +6,10 @@ class Category extends Dbcore
     {
         parent::__construct();
     }
+
     public function getAllCat()
     {
         $sql = "SELECT * FROM category ORDER BY categoryname ASC";
-
         return $this->getAll($sql);
     }
 }
