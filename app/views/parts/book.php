@@ -19,7 +19,7 @@ $book = $data[0] ?? [];
         <div class="book-detail-left">
             <div class="book-image-container">
                 <img src="/GudBuk/asset/<?php echo $book['bookid']; ?>.jpg"
-                    alt="<?php echo $book['name']; ?>"
+                    alt="<?php echo $book['title']; ?>"
                     onerror="this.src='/GudBuk/asset/placeholder.jpg'">
             </div>
             <div class="book-actions">
@@ -30,7 +30,7 @@ $book = $data[0] ?? [];
 
         <!-- KHỐI BÊN PHẢI: Thông tin chi tiết -->
         <div class="book-info">
-            <h1 class="book-title"><?php echo $book['name']; ?></h1>
+            <h1 class="book-title"><?php echo $book['title']; ?></h1>
 
             <div class="book-price-container">
                 <span class="book-price-current"><?php echo number_format($book['price'], 0, ',', '.'); ?>$</span>
@@ -39,8 +39,7 @@ $book = $data[0] ?? [];
             <p class="book-author">Tác giả: <?php echo $book['author']; ?></p>
 
             <div class="book-meta">
-                <p><strong>ISBN:</strong> 123-456-789</p>
-                <p><strong>Review:</strong> Sách rất hay...</p>
+                <p><strong>Preiew: </strong> <?php echo $book['description'] ?></p>
             </div>
         </div>
     </div>

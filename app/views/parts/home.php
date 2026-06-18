@@ -26,8 +26,8 @@ $maxpage = $data[2] ?? 1;
                     <div class="book-card" data-bookid="<?php echo $book['bookid']; ?>">
                         <!-- Book Image -->
                         <div class="book-image-container">
-                            <img src="/GudBuk/asset/<?php echo $book['bookid']; ?>.jpg"
-                                alt="<?php echo $book['name']; ?>"
+                            <img src="/GudBuk/asset/<?php echo $book['bookid'] ?>.jpg"
+                                alt="<?php echo $book['title']; ?>"
                                 onerror="this.src='/GudBuk/asset/placeholder.jpg'">
                         </div>
 
@@ -40,7 +40,7 @@ $maxpage = $data[2] ?? 1;
 
                             <!-- Title -->
                             <h3 class="book-title">
-                                <?php echo htmlspecialchars($book['name'] ?? 'Tên sách'); ?>
+                                <?php echo htmlspecialchars($book['title'] ?? 'Tên sách'); ?>
                             </h3>
 
                             <!-- Price Section -->
