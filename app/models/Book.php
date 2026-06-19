@@ -6,10 +6,16 @@ class Book extends Dbcore
     {
         parent::__construct();
     }
-    public function getAllBook()
+    public function getTotalBook()
     {
         $row = $this->countRow('select bookid from book');
         return $row;
+    }
+    public function getAllBook()
+    {
+        $sql = "SELECT * FROM book";
+        $result = $this->getAll($sql);
+        return $result;
     }
     public function getBookHome($bookperpage, $curpage, $offset)
     {

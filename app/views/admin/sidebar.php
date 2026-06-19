@@ -1,5 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$ov = '';
+$st = '';
+$cus = '';
+$fin = '';
+switch ($view) {
+    case 'overview':
+        $ov = 'active';
+        break;
+
+    case 'store':
+        $st = 'active';
+        break;
+    case 'customer':
+        $cus = 'active';
+        break;
+    default:
+        $fin = 'active';
+        break;
+}
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +31,7 @@
 <span class="sidebar__section-label">Menu chính</span>
 
 <!-- Overview -->
-<a class="nav-item active" href="/gudbuk/admin-dashboard">
+<a class="nav-item <?php echo $ov; ?>" href="/gudbuk/admin-dashboard">
     <span class="nav-item__icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="7" height="7" />
@@ -23,7 +44,7 @@
 </a>
 
 <!-- Store -->
-<a class="nav-item" href="/gudbuk/admin-dashboard/store">
+<a class="nav-item <?php echo $st; ?>" href="/gudbuk/admin-dashboard/store">
     <span class="nav-item__icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
@@ -32,11 +53,10 @@
         </svg>
     </span>
     Store
-    <span class="nav-item__pill">12</span>
 </a>
 
 <!-- Customer -->
-<a class="nav-item" href="/gudbuk/admin-dashboard/customer">
+<a class="nav-item <?php echo $cus; ?>" href="/gudbuk/admin-dashboard/customer">
     <span class="nav-item__icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -46,11 +66,10 @@
         </svg>
     </span>
     Customer
-    <span class="nav-item__badge">3</span>
 </a>
 
 <!-- Financial -->
-<a class="nav-item" href="/gudbuk/admin-dashboard/financial">
+<a class="nav-item <?php echo $fin; ?>" href="/gudbuk/admin-dashboard/financial">
     <span class="nav-item__icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="1" x2="12" y2="23" />
