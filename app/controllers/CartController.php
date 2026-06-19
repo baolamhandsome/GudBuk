@@ -3,10 +3,26 @@
 
 		public function index() {
 			$userid = $_GET['userid'] ?? null;
+			// check if userid is in url
 			if (isset($userid)) {
+
+				// check if userid in token_login is the same as the userid in url
+				$token_login = $_COOKIE['token_login'] ?? null;
+				if (!$token_login) {
+					$this->renderView('cart', ['illegal' => true]);
+				}
+				$tokenTable = new tokenLogin();
+				$tokenData = $tokenTable->getToken($token_login);
+				if ($userid != $tokenData['customerid']) {
+					$this->renderView('cart', ['illegal' => true]);
+				}
+
 				$cart = new Cart();	
 				$cartDetail = $cart->getCart($userid);
 				//var_dump($cartDetail);
+				if (empty($cartDetail)) $cartDetail['empty'] = true;
+				else $cartDetail['empty'] = false;
+				$cartDetail['illegal'] = false;
 				$this->renderView('cart', $cartDetail);
 			} else {
 				echo '404';

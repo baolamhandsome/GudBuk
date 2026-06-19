@@ -133,3 +133,16 @@
 .order-button:hover {
 	filter: brightness(0.8);
 }
+
+.incorrect {
+	padding: 4em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #FF6060;
+	border-radius: 10px;
+}
+
+.incorrect-label {
+	font-size: 30px;
+}

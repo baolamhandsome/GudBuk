@@ -3,6 +3,17 @@
 		public function orderPreview() {
 			$userid = $_GET['userid'] ?? null;
 			if (isset($userid)) {
+
+				// check if userid in token_login is the same as the userid in url
+				$token_login = $_COOKIE['token_login'] ?? null;
+				if (!$token_login) {
+					$this->renderView('orderPreview', []);
+				}
+				$tokenTable = new tokenLogin();
+				$tokenData = $tokenTable->getToken($token_login);
+				if ($userid != $tokenData['customerid']) {
+					$this->renderView('orderPreview', []);
+				}
 				$order = new Order();
 				$orderPreview = $order->previewOrder($userid);
 				$this->renderView('orderPreview', $orderPreview);		
@@ -28,6 +39,18 @@
 			if (isset($orderid)) {
 				$order = new Order();
 				$orderList = $order->getOrder($orderid);
+
+				// check if this order belongs to this user
+				$token_login = $_COOKIE['token_login'] ?? null;
+				if (!$token_login) {
+					$this->renderView('orderView', []);
+				}
+				$tokenTable = new tokenLogin();
+				$tokenData = $tokenTable->getToken($token_login);
+				if ($orderList[0]['customerid'] != $tokenData['customerid']) {
+					$this->renderView('orderView', []);
+				}
+
 				$this->renderView('orderView', $orderList);
 			}
 		}

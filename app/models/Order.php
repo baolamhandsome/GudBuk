@@ -59,8 +59,8 @@ class Order extends dbcore
 	public function getOrder($orderid)
 	{
 		$statement = "
-				SELECT * FROM order_item, book
-				WHERE order_item.bookid = book.bookid AND orderid = $orderid	
+				SELECT * FROM orders, order_item, book
+				WHERE orders.orderid = order_item.orderid AND order_item.bookid = book.bookid AND orders.orderid = $orderid	
 			";
 		return $this->getAll($statement);
 	}
