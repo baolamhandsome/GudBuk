@@ -39,6 +39,7 @@ $router->post('/cart/check', 'CartController@check', ['AuthMiddleware']);   // C
 $router->get('/orderPreview', 'OrderController@orderPreview'); // preview đơn hàng sắp đặt
 $router->post('/placeOrder', 'OrderController@placeOrder'); // Đặt hàng
 $router->get('/orderView', 'OrderController@viewOrder');    // coi đơn hàng
+$router->get('/orderList', 'OrderController@viewOrderList'); // coi danh sách đơn hàng
 $router->get('/order', 'OrderController@index');     // Xem trang đặt hàng
 $router->post('/order', 'OrderController@store');    // Xử lý đặt hàng
 $router->get('/order/history', 'OrderController@history'); // Xem lịch sử đơn hàng

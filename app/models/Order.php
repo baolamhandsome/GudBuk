@@ -64,4 +64,11 @@ class Order extends dbcore
 			";
 		return $this->getAll($statement);
 	}
+
+	public function getAllOrder($userid) {
+		$statement = "
+			SELECT * FROM orders WHERE customerid = $userid;
+		";
+		return $this->getAll($statement);
+	}
 }

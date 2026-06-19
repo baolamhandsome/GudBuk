@@ -11,7 +11,7 @@
 				}
 				$tokenTable = new tokenLogin();
 				$tokenData = $tokenTable->getToken($token_login);
-				if ($userid != $tokenData['customerid']) {
+				if (empty($tokenData) || $userid != $tokenData['customerid']) {
 					$this->renderView('orderPreview', []);
 				}
 				$order = new Order();
@@ -52,6 +52,39 @@
 				}
 
 				$this->renderView('orderView', $orderList);
+			}
+		}
+
+		public function viewOrderList() {
+			$userid = $_GET['userid'] ?? null;
+			if (isset($userid)) {
+				$order = new Order();
+				$orderList = $order->getAllOrder($userid);
+
+				// check if this order belongs to this user
+				$token_login = $_COOKIE['token_login'] ?? null;
+				if (!$token_login) {
+					$this->renderView('orderList', ['illegal' => true]);
+				}
+				$tokenTable = new tokenLogin();
+				$tokenData = $tokenTable->getToken($token_login);
+				if (empty($tokenData)) {
+					$orderList['illegal'] = true;
+					$this->renderView('orderList', $orderList);
+				} else if ($userid != $tokenData['customerid']) {
+					$orderList['illegal'] = true;
+					$this->renderView('orderList', $orderList);
+				} else if (empty($orderList)) {
+					// empty order
+					$orderList['empty'] = true;	
+					$orderList['illegal'] = false;
+					$this->renderView('orderList', $orderList);
+				} else {
+					$orderList['empty'] = false;	
+					$orderList['illegal'] = false;
+					$this->renderView('orderList', $orderList);
+				}
+
 			}
 		}
 	}
