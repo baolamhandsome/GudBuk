@@ -5,6 +5,10 @@ require_once __DIR__ . "/../cores/router.php";
 $router = new Router();
 
 $basePath = '/gudbuk';
+$router->get('/admin-dashboard', 'AdminController@overview', ['AuthMiddleware']);
+$router->get('/admin-dashboard/store', 'AdminController@showStore', ['AuthMiddleware']);
+$router->get('/admin-dashboard/customer', 'AdminController@showCustomer', ['AuthMiddleware']);
+$router->get('/admin-dashboard/financial', 'AdminController@showFinancial', ['AuthMiddleware']);
 
 // Get customerid based on token_login
 $router->get('/user', 'UserController@getCurrentUser');

@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +11,7 @@
     <title>gudbuk</title>
 </head>
 <header class="header">
-    <a href="/gudbuk/home" class="logo">GudBuk.</a>
+    <a href="/gudbuk/home" class="logo">GudBuk</a>
 
     <form action="/gudbuk/search" method="GET" class="search-form">
         <input type="search" name="query" id="search-box" placeholder="Find book by title, author...">
