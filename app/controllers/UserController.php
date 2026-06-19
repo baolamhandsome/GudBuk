@@ -7,6 +7,12 @@ class UserController extends BaseController {
     public function __construct() {
         $this->user = new User();
     }
+
+	public function getCurrentUser() {
+        $token_login = $_COOKIE['token_login'] ?? null;
+		$answer = $this->user->getUserByToken($token_login);
+		echo json_encode($answer['customerid']);
+	}
     
     /**
      * Hiển thị danh sách users dành cho admin

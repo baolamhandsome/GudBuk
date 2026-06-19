@@ -6,6 +6,9 @@ $router = new Router();
 
 $basePath = '/gudbuk';
 
+// Get customerid based on token_login
+$router->get('/user', 'UserController@getCurrentUser');
+
 //thành phần thứ 2 trong hàm get() - là $action:  là cách chúng ta quy ước chức năng của url
 $router->get('/', 'HomeController@index');
 $router->get('/home', 'HomeController@index'); // xử lí phân trang bằng tham số (?curpage=)

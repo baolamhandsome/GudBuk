@@ -11,6 +11,7 @@
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="/GudBuk/public/css/header.css">
+	<script type="text/javascript" async src="/GudBuk/public/js/header.js"></script>
     <title>gudbuk</title>
 </head>
 <header class="header">
@@ -24,18 +25,20 @@
         </button>
     </form>
     <div class="icons">
-
-        <a href="/gudbuk/cart">
-            <div id=" cart-btn" class="fas fa-shopping-cart">
-            </div>
+        <a>
+            <div id="cart-btn" class="fas fa-shopping-cart"> </div>
         </a>
 
-        <a href="/gudbuk/user">
+		<a>
+			<div id="order-btn" class="fas fa-basket-shopping"> </div>
+		</a>
+
+        <a href="/gudbuk/profile">
             <div id="user-btn" class="fas fa-user"></div>
         </a>
 
         <a href="/gudbuk/logout">
-            <div id=" logout-btn" class="fas fa-sign-out-alt"></div>
+            <div id="logout-btn" class="fas fa-sign-out-alt"></div>
         </a>
     </div>
 

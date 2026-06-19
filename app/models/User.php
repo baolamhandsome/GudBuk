@@ -26,6 +26,11 @@ class User extends Dbcore
         return $this->getOne($sql);
     }
 
+	public function getUserByToken($token) {
+		$sql = "SELECT customerid FROM token_login WHERE token = '$token'";
+		return $this->getOne($sql);
+	}
+
     public function createUser($data)
     {
         $cartid = $this->insertReturn('cart', [], 'cartid');
