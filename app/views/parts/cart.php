@@ -9,8 +9,10 @@
 <body>
 	<div class="cart-web">
 		<?php if ($data['illegal'] == false): ?>
+			<?php unset($data['illegal']) ?>
 			<div class="books-container">
 				<?php if ($data['empty'] == false): ?>
+					<?php unset($data['empty']) ?>
 					<?php foreach ($data as $entry): ?>
 						<div class="book">
 							<div class="book-information">
