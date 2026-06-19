@@ -63,5 +63,17 @@
 				echo json_encode("404");
 			}
 		}
+
+		public function add() {
+			$bookid = $_POST['bookid'] ?? null;
+			$customerid = $_POST['userid'] ?? null;
+			if (isset($bookid) && isset($customerid)) {
+				$cart = new Cart();
+				$result = $cart->addBook($bookid, $customerid);
+				echo json_encode("success");
+			} else {
+				echo json_encode("404");
+			}
+		}
 	}
 ?>
