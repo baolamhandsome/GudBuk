@@ -15,9 +15,13 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     });
 
     const data = await response.json();
-
     if (data.success) {
-        window.location.href = 'http://localhost/gudbuk/home';
+        if (data.isAdmin) {
+            window.location.href = 'http://localhost/gudbuk/admin-dashboard';
+        }
+        else {
+            window.location.href = 'http://localhost/gudbuk/home';
+        }
     } else {
         alert(data.message);
     }

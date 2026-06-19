@@ -54,4 +54,10 @@ class Order extends dbcore
 			";
 		return $this->getAll($statement);
 	}
+
+	public function getTotalRevenue()
+	{
+		$sql = "SELECT SUM(total_price) FROM orders WHERE status = 'COMPLETED'";
+		return $this->getAll($sql);
+	}
 }

@@ -5,14 +5,19 @@ require_once __DIR__ . "/../cores/router.php";
 $router = new Router();
 
 $basePath = '/gudbuk';
+$router->get('/admin-dashboard', 'AdminController@overview', ['AuthMiddleware']);
+$router->get('/admin-dashboard/store', 'AdminController@showStore', ['AuthMiddleware']);
+$router->get('/admin-dashboard/customer', 'AdminController@showCustomer', ['AuthMiddleware']);
+$router->get('/admin-dashboard/financial', 'AdminController@showFinancial', ['AuthMiddleware']);
 
 //thành phần thứ 2 trong hàm get() - là $action:  là cách chúng ta quy ước chức năng của url
 $router->get('/', 'HomeController@index');
-$router->get('/home', 'HomeController@index');
+$router->get('/home', 'HomeController@index'); // xử lí phân trang bằng tham số (?curpage=)
 
+$router->post('/home', 'HomeController');
 //====book
-$router->get('/search', 'BookController@search');    // Tìm kiếm sách (với ?query=...)
-$router->get('/book', 'BookController@show');        // Xem chi tiết sách (với ?bookid=...)
+$router->get('/search', 'BookController@search', []);    // Tìm kiếm sách (với ?query=...)
+$router->get('/book', 'BookController@show', []);        // Xem chi tiết sách (với ?bookid=...)
 
 // ===== AUTHENTICATION ROUTES =====
 $router->get('/login', 'AuthController@login', []);      // Hiển thị form login

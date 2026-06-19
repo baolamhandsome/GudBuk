@@ -1,5 +1,3 @@
-<?php ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,19 +9,32 @@
     <link rel="stylesheet" href="/GudBuk/public/css/header.css">
     <title>gudbuk</title>
 </head>
-<body>
 <header class="header">
-    <a href="../parts/home.php" class="logo">gudbuk.</a>
+    <a href="/gudbuk/home" class="logo">GudBuk</a>
 
-    <form action="" class="search-form">
-        <input type="search" id="search-box" placeholder="Find book by tile, author...">
-        <label for="search-box" class="fas fa-search"></label>
+    <form action="/gudbuk/search" method="GET" class="search-form">
+        <input type="search" name="query" id="search-box" placeholder="Find book by title, author...">
+
+        <button type="submit" id="search-submit-btn" style="background: none; border: none; cursor: pointer;">
+            <i class="fas fa-search"></i>
+        </button>
     </form>
     <div class="icons">
-        <a href="cart.html" id="cart-btn" class="fas fa-shopping-cart"></a>
-        <div id="search-btn" class="fas fa-search"></div>
-        <a href="../app/routes/profile.php" id="user-btn" class="fas fa-user"></a>
-        <div id="menu-btn" class="fas fa-sign-out"></div>
+
+        <a href="/gudbuk/cart">
+            <div id=" cart-btn" class="fas fa-shopping-cart">
+            </div>
+        </a>
+
+        <a href="/gudbuk/user">
+            <div id="user-btn" class="fas fa-user"></div>
+        </a>
+
+        <a href="/gudbuk/logout">
+            <div id=" logout-btn" class="fas fa-sign-out-alt"></div>
+        </a>
     </div>
+
 </header>
 
+</html>

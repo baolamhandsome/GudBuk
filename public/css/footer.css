@@ -1,79 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
+
+* {
+    font-family: 'Rubik', sans-serif;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: .2s linear;
+}
+
 .footer {
     padding-top: 30px;
-    background-color: #F6FBF6;
+    margin-top: auto;
+    background-color: #b06d36;
     width: 100%;
 }
 
 .footer-container {
+    align-items: flex-end;
     padding-bottom: 30px;
     display: flex;
-    max-width: 1200px;
     margin: auto;
-    color: #254D4D;
+    color: #ffffff;
     justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
 }
 
-.footer-About h1 {
-    color: #254D4D;
-    margin-bottom: 0.5rem;
-}
-
-.footer-About p,
-.footer-contact p {
-    color: #254D4D;
-    margin-top: 0.5rem;
-    line-height: 1.6;
-}
-
-.footer-section h3,
-.footer-contact h3 {
-    color: #254D4D;
-    margin-bottom: 0.8rem;
+.logo-div {
+    align-items: center;
+    display: flex;
 }
 
 .footer-bottom {
-    width: 100%;               /* ✅ Full width */
-    display: block;            /* ✅ Không bị co lại */
+    margin: auto;
     text-align: center;
-    padding: 15px 20px;        /* ✅ Padding cả trên lẫn dưới */
-    background-color: #1a202c;
-    color: #fff;               /* ✅ Chữ trắng trên nền tối */
-    font-size: 1.4rem;         /* ✅ Fix font-size do html 62.5% */
-}
-
-.list {
-    margin-top: 0.5rem;
+    padding-top: 20px;
+    background-color: #ffffff;
 }
 
 .list a {
     color: #254D4D;
     text-decoration: none;
-    line-height: 2;
 }
 
 .list a:hover {
     color: #1a202c;
-    text-decoration: underline;
 }
 
 .list li {
+    width: auto;
     list-style-type: none;
     text-align: left;
-}
-
-/* ✅ Responsive mobile */
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .list li {
-        text-align: center;
-    }
 }

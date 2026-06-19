@@ -106,17 +106,19 @@ class AuthController extends BaseController
 
             //đưa token vào DB
             $data = [
-                'tokenid' => $token,
-                'userid' => $have['userid'],
+                'token' => $token,
+                'customerid' => $have['customerid'],
                 'expires_at' => date('Y-m-d H:i:s', time() + $live),
             ];
             $this->tokenModel->insert('token_login', $data);
 
             //đưa token cho client
+            $isAdmin = $have['customerid'] == 1;
             echo json_encode([
                 'success' => true,
                 'message' => 'Đăng nhập thành công',
-                'token_login' => $token
+                'token_login' => $token,
+                'isAdmin' => $isAdmin
             ]);
             exit;
         }
