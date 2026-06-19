@@ -52,6 +52,12 @@ class Order extends dbcore
 					WHERE cart_item_id = {$entry['cart_item_id']}
 				";
 			$this->update($deleteStatement);
+
+			// increase sold in book
+			$bookid = $entry['bookid'];
+			$quantity = $entry['quantity'];
+			$update = "UPDATE book SET sold = sold + $quantity WHERE bookid = $bookid";
+			$this->update($update);
 		}
 		return $orderid;
 	}
