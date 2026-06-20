@@ -27,12 +27,33 @@ class UserController extends BaseController {
      */
     public function profile() {
         // TODO: Lấy username từ session
-        
-        $name = $_GET['name'];
-        $userData = $this->user->getUserByUsername($name);
+
+        // thay vì dùng name đổi sang userid
+        $userid = $_GET['userid'] ?? ($_SESSION['user_id'] ?? null);
+
+        if (!$userid) {
+            header('Location: /gudbuk/login');
+            exit;
+        }
+
+        $userData = $this->user->getUserByUserID($userid);
 
         // TODO: Lấy dữ liệu từ database
-        $data = ['user' => $userData ];
+        //$data = ['user' => $userData ];
+
+        // CSRF token cho form update
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+
+        $data = [
+            'user'       => $userData,
+            'csrf_token' => $_SESSION['csrf_token'],
+            'errors'     => $_SESSION['profile_errors'] ?? [],
+            'flash'      => $_SESSION['flash'] ?? null,
+        ];
+
+        unset($_SESSION['profile_errors'], $_SESSION['flash']);
         
         //ob_start();
         $this->renderView('profile', $data);
@@ -45,13 +66,64 @@ class UserController extends BaseController {
      * Cập nhật profile
      */
     public function updateProfile() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // TODO: Validate dữ liệu từ $_POST
-            // TODO: Cập nhật trong database
-            
-            header('Location: /profile');
-            exit;
-        }
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header('Location: /gudbuk/profile');
+        exit;
+    }
+
+    // Kiểm tra CSRF
+    if (
+        empty($_POST['csrf_token']) ||
+        empty($_SESSION['csrf_token']) ||
+        !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+    ) {
+        http_response_code(403);
+        exit('Invalid CSRF token');
+    }
+
+    $userid  = $_POST['customerid'] ?? null;
+    $name    = trim($_POST['name'] ?? '');
+    $email   = trim($_POST['email'] ?? '');
+    $phone   = trim($_POST['phone'] ?? '');
+
+    if (!$userid) {
+        http_response_code(400);
+        exit('Missing customerid');
+    }
+
+    // Validate dữ liệu
+    $errors = [];
+    if ($name === '') {
+        $errors['name'] = 'Tên không được để trống.';
+    }
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = 'Email không hợp lệ.';
+    } elseif ($this->user->isEmailTakenByOther($email, $userid)) {
+        $errors['email'] = 'Email đã được sử dụng bởi tài khoản khác.';
+    }
+    if (!preg_match('/^[0-9+\-\s]{8,15}$/', $phone)) {
+        $errors['phone'] = 'Số điện thoại không hợp lệ.';
+    }
+
+    if (!empty($errors)) {
+        $_SESSION['profile_errors'] = $errors;
+        header('Location: /gudbuk/profile?userid=' . urlencode($userid));
+        exit;
+    }
+
+    // Cập nhật trong database
+    $success = $this->user->updateUser($userid, [
+        'name'    => $name,
+        'email'   => $email,
+        'phone'   => $phone,
+    ]);
+
+    $_SESSION['flash'] = $success
+        ? ['type' => 'success', 'message' => 'Cập nhật thông tin thành công.']
+        : ['type' => 'error',   'message' => 'Có lỗi xảy ra, vui lòng thử lại.'];
+
+    header('Location: /gudbuk/profile?userid=' . urlencode($userid));
+    exit;
     }
     
     /**

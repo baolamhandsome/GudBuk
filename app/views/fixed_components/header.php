@@ -26,7 +26,7 @@
             </div>
         </a>
 
-        <a href="/gudbuk/user">
+        <a href="/gudbuk/profile">
             <div id="user-btn" class="fas fa-user"></div>
         </a>
 

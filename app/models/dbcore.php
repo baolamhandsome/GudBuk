@@ -9,27 +9,27 @@ class Dbcore
         $this->conn = Database::connectPDO();
     }
     // get all rows of the query result
-    public function getAll($sql)
+    public function getAll($sql, $params = [])
     {
         $stm = $this->conn->prepare($sql);
-        $stm->execute();
+        $stm->execute($params);
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
     // get first row of the query result
-    public function getOne($sql)
+    public function getOne($sql,  $params = [])
     {
         $stm = $this->conn->prepare($sql);
-        $stm->execute();
+        $stm->execute($params);
         $result = $stm->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
     //countRow : đếm số lượng bản ghi trả về sau khi thực hiện
-    public function countRow($sql)
+    public function countRow($sql,  $params = [])
     {
         $stm = $this->conn->prepare($sql);
-        $stm->execute();
+        $stm->execute($params);
         return $stm->rowCount();
     }
 
@@ -97,10 +97,30 @@ class Dbcore
         return $stm->fetchColumn();
     }
 
-
-    public function update($sql)
+    public function query($sql, $params = [])
     {
         $stm = $this->conn->prepare($sql);
-        $stm->execute();
+        return $stm->execute($params);
+    }
+
+    public function update($table, $data, $where, $whereParams = [])
+    {
+        if (empty($data)) {
+            return false;
+        }
+
+        $key = array_keys($data);
+        $val = array_values($data);
+
+        // Tạo "col1 = ?, col2 = ?, col3 = ?"
+        $setClause = implode(', ', array_map(fn($col) => "$col = ?", $key));
+
+        $sql = "UPDATE $table SET $setClause WHERE $where";
+
+        // Giá trị bind theo đúng thứ tự: SET trước, rồi tới WHERE
+        $params = array_merge($val, $whereParams);
+
+        $stm = $this->conn->prepare($sql);
+        return $stm->execute($params);
     }
 }

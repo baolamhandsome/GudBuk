@@ -49,4 +49,23 @@ class User extends Dbcore
 
         return $this->insert('customer', $insertData);
     }
+
+    public function isEmailTakenByOther($email, $excludeId)
+    {
+        $sql = "SELECT * FROM customer WHERE email = ? AND customerid != ?";
+        $row = $this->getOne($sql, [$email, $excludeId]);
+        return !empty($row);
+    }
+
+    public function updateUser($id, $data)
+    {
+        $updateData = array(
+            'name'    => $data['name'],
+            'email'   => $data['email'],
+            'phone'   => $data['phone'],
+        );
+
+        return $this->update('customer', $updateData, 'customerid = ?', [$id]);
+    }
+
 }
