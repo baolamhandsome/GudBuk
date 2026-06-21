@@ -18,4 +18,9 @@ class tokenLogin extends Dbcore
         $sql = "DELETE FROM token_login WHERE token = '$token'";
         return $this->query($sql);
     }
+    public function getTotalTraffic()
+    {
+        $sql = "SELECT COUNT(customerid) as traffic FROM token_login";
+        return $this->getAll($sql);
+    }
 }

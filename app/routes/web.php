@@ -6,8 +6,15 @@ $router = new Router();
 
 $basePath = '/gudbuk';
 $router->get('/admin-dashboard', 'AdminController@overview', ['AuthMiddleware']);
+
 $router->get('/admin-dashboard/store', 'AdminController@showStore', ['AuthMiddleware']);
+$router->get('/admin-dashboard/store/edit', 'AdminController@showEditBook', ['AuthMiddleware']);
+$router->post('/admin-dashboard/store/edit', 'AdminController@editBook', ['AuthMiddleware']);
+$router->post('/admin-dashboard/store/delete', 'AdminController@deleteBook', ['AuthMiddleware']);
+
 $router->get('/admin-dashboard/customer', 'AdminController@showCustomer', ['AuthMiddleware']);
+$router->get('/admin-dashboard/customer/delete', 'AdminController@deleteCustomer', ['AuthMiddleware']);
+
 $router->get('/admin-dashboard/financial', 'AdminController@showFinancial', ['AuthMiddleware']);
 
 //thành phần thứ 2 trong hàm get() - là $action:  là cách chúng ta quy ước chức năng của url
