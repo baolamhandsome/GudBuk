@@ -9,32 +9,36 @@
     <link rel="stylesheet" href="/GudBuk/public/css/header.css">
     <title>gudbuk</title>
 </head>
-<header class="header">
-    <a href="/gudbuk/home" class="logo">GudBuk</a>
+<body>
+	<header class="header">
+		<a href="/gudbuk/home" class="logo">GudBuk</a>
 
-    <form action="/gudbuk/search" method="GET" class="search-form">
-        <input type="search" name="query" id="search-box" placeholder="Find book by title, author...">
+		<form action="/gudbuk/search" method="GET" class="search-form">
+			<input type="search" name="query" id="search-box" placeholder="Find book by title, author...">
 
-        <button type="submit" id="search-submit-btn" style="background: none; border: none; cursor: pointer;">
-            <i class="fas fa-search"></i>
-        </button>
-    </form>
-    <div class="icons">
+			<button type="submit" id="search-submit-btn" style="background: none; border: none; cursor: pointer;">
+				<i class="fas fa-search"></i>
+			</button>
+		</form>
+		<div class="icons">
+			<a>
+				<div id="cart-btn" class="fas fa-shopping-cart"> </div>
+			</a>
 
-        <a href="/gudbuk/cart">
-            <div id=" cart-btn" class="fas fa-shopping-cart">
-            </div>
-        </a>
+			<a>
+				<div id="order-btn" class="fas fa-basket-shopping"> </div>
+			</a>
 
-        <a href="/gudbuk/user">
-            <div id="user-btn" class="fas fa-user"></div>
-        </a>
+			<a href="/gudbuk/profile">
+				<div id="user-btn" class="fas fa-user"></div>
+			</a>
 
-        <a href="/gudbuk/logout">
-            <div id=" logout-btn" class="fas fa-sign-out-alt"></div>
-        </a>
-    </div>
+			<a href="/gudbuk/logout">
+				<div id="logout-btn" class="fas fa-sign-out-alt"></div>
+			</a>
+		</div>
 
-</header>
-
+	</header>
+	<script type="text/javascript" src="/GudBuk/public/js/header.js"></script>
+</body>
 </html>

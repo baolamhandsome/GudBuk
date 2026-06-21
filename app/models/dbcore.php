@@ -103,4 +103,21 @@ class Dbcore
         $stm = $this->conn->prepare($sql);
         $stm->execute();
     }
+
+	// Transaction
+	public function beginTransaction() {
+		return $this->conn->beginTransaction();
+	}
+
+	public function commit() {
+		return $this->conn->commit();
+	}
+
+	public function rollback() {
+		return $this->conn->rollBack();
+	}
+
+	public function inTransaction() {
+		return $this->conn->inTransaction();
+	}
 }

@@ -28,7 +28,21 @@
 			if (isset($orderid)) {
 				$order = new Order();
 				$orderList = $order->getOrder($orderid);
+
 				$this->renderView('orderView', $orderList);
+			}
+		}
+
+		public function viewOrderList() {
+			$userid = $_GET['userid'] ?? null;
+			if (isset($userid)) {
+				$order = new Order();
+				$orderList = $order->getAllOrder($userid);
+
+				if (empty($orderList)) $orderList['empty'] = true;
+				else $orderList['empty'] = false;
+
+				$this->renderView('orderList', $orderList);
 			}
 		}
 	}
