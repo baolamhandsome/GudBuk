@@ -10,6 +10,7 @@ body {
     background-color: #d5b7b3;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 50px 20px;
+    min-height: 100vh;
 }
 
 /* Page Title */
@@ -36,10 +37,10 @@ body {
     margin-top: 10px;
     align-self: center;
     background-color: #ffffff;
-    gap: 15px;
 }
 
-.buy-now-btn, .add-cart-btn {
+.buy-now-btn,
+.add-cart-btn {
     background-color: #701c21;
     color: #ffffff;
     border: none;
@@ -50,7 +51,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.btn:hover {
+.buy-now-btn:hover .add-cart-btn:hover {
     background-color: #5a1517;
 }
 
@@ -66,6 +67,7 @@ body {
     flex-direction: column;
     height: 100%;
     padding: 0 20px 20px 20px;
+    position: relative;
 }
 
 .book-image-container {

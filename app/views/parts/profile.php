@@ -1,76 +1,103 @@
 <?php
 // views/profile.php
-// $data['user']       = row từ bảng customer (customerID, name, email, phone, address, ...)
-// $data['csrf_token'] = token chống CSRF
-// $data['errors']     = mảng lỗi validate (nếu có), key theo tên field
-// $data['flash']      = ['type'=>'success|error', 'message'=>'...']
+
+// Rút gọn mảng data để code phía dưới sạch sẽ (Clean Code) hơn
+$user = $data['user'] ?? null;
+$errors = $data['errors'] ?? [];
+$flash = $data['flash'] ?? null;
 ?>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account</title>
+    <title>My Account - GudBuk</title>
     <link rel="stylesheet" href="/gudbuk/public/css/profile.css">
 </head>
+
 <body>
 
-<header class="page-header">
-    <h1>My Account</h1>
-    <div class="breadcrumb">Home &nbsp;/&nbsp; <span>My Account</span></div>
-</header>
+    <header class="page-header">
+        <h1>My Account</h1>
+    </header>
 
-<main class="account-wrapper">
+    <main class="account-wrapper">
 
-    <nav class="sidebar" aria-label="Account navigation">
-        <a href="/gudbuk/profile?userid=<?php echo (int)($data['user']['customerid'] ?? 0); ?>" class="active">Personal Information</a>
-        <a href="/gudbuk/orderView">My orders</a>
-        <a href="/gudbuk/logout">Logout</a>
-    </nav>
+        <?php if (!$user): ?>
 
-    <section class="form-section">
-
-        <div id="flash-message" style="display:none"></div>
-
-        <form class="form-grid" action="/gudbuk/profile" method="POST">
-
-            <input type="hidden" name="customerid" value="<?php echo (int)($data['user']['customerid'] ?? 0); ?>">
-
-            <div class="field full">
-                <label for="name">Name <span class="req">*</span></label>
-                <input id="name" name="name" type="text"
-                       value="<?php echo htmlspecialchars($data['user']['name'] ?? ''); ?>"
-                       class="<?php echo isset($data['errors']['name']) ? 'invalid' : ''; ?>" required>
-                <span id="name-error" class="error-msg"></span>
-
+            <div class="empty-state">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="1.5" style="margin-bottom: 15px;">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                    <line x1="3" y1="3" x2="21" y2="21"></line>
+                </svg>
+                <h2>Không tìm thấy thông tin tài khoản!</h2>
+                <p>Tài khoản này không tồn tại, bạn chưa đăng nhập, hoặc phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại để tiếp tục.</p>
+                <a href="/gudbuk/login" class="btn-return">Đăng nhập ngay</a>
             </div>
 
-            <div class="field full">
-                <label for="email">Email <span class="req">*</span></label>
-                <input id="email" name="email" type="email"
-                       value="<?php echo htmlspecialchars($data['user']['email'] ?? ''); ?>"
-                       class="<?php echo isset($data['errors']['email']) ? 'invalid' : ''; ?>" required>
-                <span id="email-error" class="error-msg"></span>
-            </div>
+        <?php else: ?>
 
-            <div class="field full">
-                <label for="phone">Phone <span class="req">*</span></label>
-                <input id="phone" name="phone" type="tel"
-                       value="<?php echo htmlspecialchars($data['user']['phone'] ?? ''); ?>"
-                       class="<?php echo isset($data['errors']['phone']) ? 'invalid' : ''; ?>" required>
-                <span id="phone-error" class="error-msg"></span>
-            </div>
+            <nav class="sidebar" aria-label="Account navigation">
+                <a href="/gudbuk/profile?userid=<?php echo (int)$user['customerid']; ?>" class="active">Personal Information</a>
+                <a href="/gudbuk/orderView">My orders</a>
+                <a href="/gudbuk/logout">Logout</a>
+            </nav>
 
-            <div class="full">
-                <button class="update-btn" type="submit">Update Changes</button>
-            </div>
+            <section class="form-section">
 
-        </form>
+                <?php if ($flash): ?>
+                    <div id="flash-message" class="flash-<?php echo $flash['type']; ?>">
+                        <?php echo htmlspecialchars($flash['message']); ?>
+                    </div>
+                <?php else: ?>
+                    <div id="flash-message" style="display:none"></div>
+                <?php endif; ?>
 
-    </section>
+                <form class="form-grid" action="/gudbuk/profile" method="POST">
 
-</main>
+                    <input type="hidden" name="customerid" value="<?php echo (int)$user['customerid']; ?>">
 
-    <script  src="/GudBuk/public/js/profile.js"></script>
+                    <div class="field full">
+                        <label for="name">Name <span class="req">*</span></label>
+                        <input id="name" name="name" type="text"
+                            value="<?php echo htmlspecialchars($user['name'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+                            class="<?php echo isset($errors['name']) ? 'invalid' : ''; ?>" required>
+                        <span id="name-error" class="error-msg"><?php echo $errors['name'] ?? ''; ?></span>
+                    </div>
+
+                    <div class="field full">
+                        <label for="email">Email <span class="req">*</span></label>
+                        <input id="email" name="email" type="email"
+                            value="<?php echo htmlspecialchars($user['email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+                            class="<?php echo isset($errors['email']) ? 'invalid' : ''; ?>" required>
+                        <span id="email-error" class="error-msg"><?php echo $errors['email'] ?? ''; ?></span>
+                    </div>
+
+                    <div class="field full">
+                        <label for="phone">Phone <span class="req">*</span></label>
+                        <input id="phone" name="phone" type="tel"
+                            value="<?php echo htmlspecialchars($user['phone'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+                            class="<?php echo isset($errors['phone']) ? 'invalid' : ''; ?>" required>
+                        <span id="phone-error" class="error-msg"><?php echo $errors['phone'] ?? ''; ?></span>
+                    </div>
+
+                    <div class="full">
+                        <button class="update-btn" type="submit">Update Changes</button>
+                    </div>
+
+                </form>
+
+            </section>
+
+        <?php endif; ?>
+    </main>
+
+    <?php if ($user): ?>
+        <script src="/GudBuk/public/js/profile.js"></script>
+    <?php endif; ?>
+
 </body>
+
 </html>

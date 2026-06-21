@@ -20,14 +20,14 @@ class AuthMiddleware
         $token_login = $_COOKIE['token_login'] ?? null;
 
         if (!$token_login) {
-            return false;
+            return "";
         }
 
         $tokenTable = new tokenLogin();
         $tokenData = $tokenTable->getToken($token_login);
         if (!$tokenData) {
             // ko tồn tại hoặc hết hạn
-            return false;
+            return "";
         }
         if ($tokenData['customerid'] == 1) {
             return "ADMIN";

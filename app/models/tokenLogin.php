@@ -8,15 +8,15 @@ class tokenLogin extends Dbcore
     }
     public function getToken($token)
     {
-        $sql = "SELECT * FROM token_login WHERE token = '$token' AND expires_at > NOW()";
+        $sql = "SELECT * FROM token_login WHERE token = '$token' AND expires_at > NOW() AND is_active = true";
         return $this->getOne($sql);
     }
 
     // tạm thời sử dụng hàm ntn
     public function deleteToken($token)
     {
-        $sql = "DELETE FROM token_login WHERE token = '$token'";
-        return $this->query($sql);
+        $sql = "UPDATE token_login SET is_active = FALSE WHERE token = '$token'";
+        return $this->update($sql);
     }
     public function getTotalTraffic()
     {

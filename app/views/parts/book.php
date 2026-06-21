@@ -23,8 +23,7 @@ $book = $data[0] ?? [];
                     onerror="this.src='/GudBuk/asset/placeholder.jpg'">
             </div>
             <div class="book-actions">
-                <button class="buy-now-btn">Buy Now</button>
-				<button class="add-cart-btn" data-bookid=<?= $book['bookid']?> >Add to Cart</button>
+                <button class="add-cart-btn" data-bookid=<?= $book['bookid'] ?>>Add to Cart</button>
             </div>
         </div>
 
@@ -43,7 +42,7 @@ $book = $data[0] ?? [];
             </div>
         </div>
     </div>
-	<script type="text/javascript" src="/GudBuk/public/js/book.js"></script>
+    <script type="text/javascript" src="/GudBuk/public/js/book.js"></script>
 </body>
 
 </html>

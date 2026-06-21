@@ -1,37 +1,42 @@
-<?php 
+<?php
 
-class UserController extends BaseController {
-    
+class UserController extends BaseController
+{
+
     private $user;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->user = new User();
     }
 
-	public function getCurrentUser() {
+    public function getCurrentUser()
+    {
         $token_login = $_COOKIE['token_login'] ?? null;
-		$answer = $this->user->getUserByToken($token_login);
-		echo json_encode($answer['customerid']);
-	}
-    
+        $answer = $this->user->getUserByToken($token_login);
+        echo json_encode($answer['customerid']);
+    }
+
     /**
      * Hiển thị danh sách users dành cho admin
      */
-    public function index() {
+    public function index()
+    {
         // Lấy tất cả users từ database
         $userDetail = $this->user->getAllUsers();
-        
+
         ob_start();
         $this->renderView('profile', ['users' => $userDetail]);
         $data['content'] = ob_get_clean();
-        
+
         //$this->renderView('layouts/mainLayout', $data);
     }
-    
+
     /**
      * Xem profile của user hiện tại User view
      */
-    public function profile() {
+    public function profile()
+    {
         // TODO: Lấy username từ session
 
         // thay vì dùng name đổi sang userid
@@ -51,18 +56,18 @@ class UserController extends BaseController {
 
 
         $data = [
-            'user'       => $userData
+            'user' => $userData
         ];
 
         unset($_SESSION['profile_errors'], $_SESSION['flash']);
-        
+
         //ob_start();
         $this->renderView('profile', $data);
         //$data['content'] = ob_get_clean();
-        
+
         //$this->renderView('mainLayout', $data);
     }
-    
+
     /**
      * Cập nhật profile
      */
@@ -125,19 +130,20 @@ class UserController extends BaseController {
     /**
      * Xem chi tiết user (nếu cần)
      */
-    public function show() {
+    public function show()
+    {
         // TODO: Lấy user ID từ URL params
         // $userId = $_GET['id'];
         // $userData = $this->user->findById($userId);
-        
+
         $data = [
             'user' => [] // TODO: Lấy dữ liệu từ database
         ];
-        
+
         ob_start();
         $this->renderView('parts/user-detail', $data);
         $data['content'] = ob_get_clean();
-        
+
         $this->renderView('layouts/mainLayout', $data);
     }
 }

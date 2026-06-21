@@ -39,7 +39,7 @@ $router->post('/register', 'AuthController@handleRegister', []); // Xử lý reg
 $router->get('/logout', 'AuthController@logout', []);    // Đăng xuất
 
 // ===== USER ROUTES =====
-$router->get('/profile', 'UserController@profile', ['AuthMiddleware']);         // Xem profile của user hiện tại
+$router->get('/profile', 'UserController@profile', []);         // Xem profile của user hiện tại
 $router->post('/profile', 'UserController@updateProfile', ['AuthMiddleware']);  // Cập nhật profile
 
 // ===== SHOPPING CART ROUTES =====
