@@ -41,9 +41,8 @@
                 <input id="name" name="name" type="text"
                        value="<?php echo htmlspecialchars($data['user']['name'] ?? ''); ?>"
                        class="<?php echo isset($data['errors']['name']) ? 'invalid' : ''; ?>" required>
-                <?php if (isset($data['errors']['name'])): ?>
-                    <span class="error-msg"><?php echo htmlspecialchars($data['errors']['name']); ?></span>
-                <?php endif; ?>
+                <span id="name-error" class="error-msg"></span>
+
             </div>
 
             <div class="field full">
@@ -51,9 +50,7 @@
                 <input id="email" name="email" type="email"
                        value="<?php echo htmlspecialchars($data['user']['email'] ?? ''); ?>"
                        class="<?php echo isset($data['errors']['email']) ? 'invalid' : ''; ?>" required>
-                <?php if (isset($data['errors']['email'])): ?>
-                    <span class="error-msg"><?php echo htmlspecialchars($data['errors']['email']); ?></span>
-                <?php endif; ?>
+                <span id="email-error" class="error-msg"></span>
             </div>
 
             <div class="field full">
@@ -61,9 +58,7 @@
                 <input id="phone" name="phone" type="tel"
                        value="<?php echo htmlspecialchars($data['user']['phone'] ?? ''); ?>"
                        class="<?php echo isset($data['errors']['phone']) ? 'invalid' : ''; ?>" required>
-                <?php if (isset($data['errors']['phone'])): ?>
-                    <span class="error-msg"><?php echo htmlspecialchars($data['errors']['phone']); ?></span>
-                <?php endif; ?>
+                <span id="phone-error" class="error-msg"></span>
             </div>
 
             <div class="full">
