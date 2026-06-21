@@ -93,7 +93,12 @@ class Order extends dbcore
 
 	public function getTotalRevenue()
 	{
-		$sql = "SELECT SUM(total_price) FROM orders WHERE status = 'COMPLETED'";
+		$sql = "SELECT SUM(total_price) as revenue FROM orders WHERE status = 'COMPLETED'";
+		return $this->getAll($sql);
+	}
+	public function getTotalSold()
+	{
+		$sql = "SELECT SUM(order_item.quantity) as sold FROM orders JOIN order_item ON orders.orderid = order_item.orderid WHERE orders.status = 'COMPLETED'";
 		return $this->getAll($sql);
 	}
 }

@@ -12,7 +12,7 @@ class HomeController extends BaseController
     }
     public function index()
     {
-        $maxBook = $this->bookModel->getAllBook();
+        $maxBook = $this->bookModel->getTotalBook();
 
         $maxpage = ceil($maxBook / $this->bookperpage);
         $curpage = $_GET['curpage'] ?? 1;
