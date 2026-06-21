@@ -15,7 +15,7 @@ class tokenLogin extends Dbcore
     // tạm thời sử dụng hàm ntn
     public function deleteToken($token)
     {
-        $sql = "DELETE FROM token_login WHERE token = ?";
-        return $this->query($sql, [$token]);
+        $sql = "DELETE FROM token_login WHERE token = '$token'";
+        return $this->query($sql);
     }
 }

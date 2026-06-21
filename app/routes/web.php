@@ -15,7 +15,7 @@ $router->get('/', 'HomeController@index');
 $router->get('/home', 'HomeController@index'); // xử lí phân trang bằng tham số (?curpage=)
 
 $router->post('/home', 'HomeController');
-//====book
+//==== book
 $router->get('/search', 'BookController@search', []);    // Tìm kiếm sách (với ?query=...)
 $router->get('/book', 'BookController@show', []);        // Xem chi tiết sách (với ?bookid=...)
 

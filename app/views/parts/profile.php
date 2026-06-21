@@ -24,21 +24,16 @@
 
     <nav class="sidebar" aria-label="Account navigation">
         <a href="/gudbuk/profile?userid=<?php echo (int)($data['user']['customerid'] ?? 0); ?>" class="active">Personal Information</a>
-        <a href="/gudbuk/orders">My Orders</a>
+        <a href="/gudbuk/orderView">My orders</a>
         <a href="/gudbuk/logout">Logout</a>
     </nav>
 
     <section class="form-section">
 
-        <?php if (!empty($data['flash'])): ?>
-            <div class="alert alert-<?php echo htmlspecialchars($data['flash']['type']); ?>">
-                <?php echo htmlspecialchars($data['flash']['message']); ?>
-            </div>
-        <?php endif; ?>
+        <div id="flash-message" style="display:none"></div>
 
         <form class="form-grid" action="/gudbuk/profile" method="POST">
 
-            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($data['csrf_token']); ?>">
             <input type="hidden" name="customerid" value="<?php echo (int)($data['user']['customerid'] ?? 0); ?>">
 
             <div class="field full">
@@ -81,5 +76,6 @@
 
 </main>
 
+    <script  src="/GudBuk/public/js/profile.js"></script>
 </body>
 </html>
