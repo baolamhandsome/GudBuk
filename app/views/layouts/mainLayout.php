@@ -1,8 +1,23 @@
 <?php
-//render 3 thành phần chung cho mọi view của từng url 
-$this->renderView('fixed_components/header');
-$this->renderView('fixed_components/footer');
-//$this->renderView('fixed_components/sidebar');
-// render phần riêng (phần content) cho từng url một
+$viewFromRender = $view ?? null;
+?>
+<!DOCTYPE html>
+<html lang="en">
 
-// ta đã nhúng view từ /parts/user -> main layout
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/GudBuk/public/css/home.css">
+    <title>gudbuk</title>
+</head>
+
+<body>
+<?php require_once "./app/views/fixed_components/header.php"; ?>
+
+<div class="layout">
+    <main class="main">
+        <?php require_once "./app/views/parts/$viewFromRender.php"; ?>
+    </main>
+</div>
+     <?php require_once "./app/views/fixed_components/footer.php"; ?>
+
+</body>

@@ -98,10 +98,12 @@ class Dbcore
     }
 
 
+
     public function update($sql)
     {
+
         $stm = $this->conn->prepare($sql);
-        $stm->execute();
+        return $stm->execute();
     }
 
 	// Transaction
