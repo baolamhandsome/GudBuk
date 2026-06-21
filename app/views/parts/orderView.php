@@ -42,13 +42,6 @@ foreach ($data as $entry) {
 					<?= $total ?>$
 				</div>
 			</div>
-		<?php else: ?>
-			<div class="incorrect">
-				<div class="incorrect-label">
-					Sorry, this is not your order!
-				</div>	
-			</div>
-
 		<?php endif; ?>
 	</div>
 </body>

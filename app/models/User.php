@@ -36,6 +36,11 @@ class User extends Dbcore
         return $this->getOne($sql);
     }
 
+	public function getUserByOrderID($id) {
+		$sql = "SELECT customerid FROM orders WHERE orderid = $id";
+		return $this->getOne($sql);
+	}
+
     public function createUser($data)
     {
         $cartid = $this->insertReturn('cart', [], 'cartid');

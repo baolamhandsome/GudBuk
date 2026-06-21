@@ -30,12 +30,6 @@
 					<button class="order-button" data-userid=<?= $entry['customerid'] ?>>Order</button>
 				</div>
 			</div>
-		<?php else: ?>
-			<div class="incorrect">
-				<div class="incorrect-label">
-					Sorry, this is not your order!
-				</div>	
-			</div>
 		<?php endif; ?>
 	</div>
 	<script type="text/javascript" src="/GudBuk/public/js/orderPreview.js"></script>

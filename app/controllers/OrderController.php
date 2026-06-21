@@ -3,17 +3,6 @@
 		public function orderPreview() {
 			$userid = $_GET['userid'] ?? null;
 			if (isset($userid)) {
-
-				// check if userid in token_login is the same as the userid in url
-				$token_login = $_COOKIE['token_login'] ?? null;
-				if (!$token_login) {
-					$this->renderView('orderPreview', []);
-				}
-				$tokenTable = new tokenLogin();
-				$tokenData = $tokenTable->getToken($token_login);
-				if (empty($tokenData) || $userid != $tokenData['customerid']) {
-					$this->renderView('orderPreview', []);
-				}
 				$order = new Order();
 				$orderPreview = $order->previewOrder($userid);
 				$this->renderView('orderPreview', $orderPreview);		
@@ -40,17 +29,6 @@
 				$order = new Order();
 				$orderList = $order->getOrder($orderid);
 
-				// check if this order belongs to this user
-				$token_login = $_COOKIE['token_login'] ?? null;
-				if (!$token_login) {
-					$this->renderView('orderView', []);
-				}
-				$tokenTable = new tokenLogin();
-				$tokenData = $tokenTable->getToken($token_login);
-				if ($orderList[0]['customerid'] != $tokenData['customerid']) {
-					$this->renderView('orderView', []);
-				}
-
 				$this->renderView('orderView', $orderList);
 			}
 		}
@@ -61,30 +39,10 @@
 				$order = new Order();
 				$orderList = $order->getAllOrder($userid);
 
-				// check if this order belongs to this user
-				$token_login = $_COOKIE['token_login'] ?? null;
-				if (!$token_login) {
-					$this->renderView('orderList', ['illegal' => true]);
-				}
-				$tokenTable = new tokenLogin();
-				$tokenData = $tokenTable->getToken($token_login);
-				if (empty($tokenData)) {
-					$orderList['illegal'] = true;
-					$this->renderView('orderList', $orderList);
-				} else if ($userid != $tokenData['customerid']) {
-					$orderList['illegal'] = true;
-					$this->renderView('orderList', $orderList);
-				} else if (empty($orderList)) {
-					// empty order
-					$orderList['empty'] = true;	
-					$orderList['illegal'] = false;
-					$this->renderView('orderList', $orderList);
-				} else {
-					$orderList['empty'] = false;	
-					$orderList['illegal'] = false;
-					$this->renderView('orderList', $orderList);
-				}
+				if (empty($orderList)) $orderList['empty'] = true;
+				else $orderList['empty'] = false;
 
+				$this->renderView('orderList', $orderList);
 			}
 		}
 	}

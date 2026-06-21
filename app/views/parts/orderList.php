@@ -8,8 +8,7 @@
 
 <body>
 	<div class="order-list-container">
-		<?php if ($data['illegal'] == false): ?>
-			<?php unset($data['illegal']) ?>
+		<?php if ($data['empty'] == false): ?>
 			<?php unset($data['empty']) ?>
 			<?php foreach($data as $index => $entry): ?>
 				<button class="order-container" data-orderid=<?php echo $entry['orderid']?> >
@@ -30,12 +29,6 @@
 					</div>
 				</button>	
 			<?php endforeach; ?>
-		<?php else: ?>
-			<div class="incorrect">
-				<div class="incorrect-label">
-					Sorry, this is not your order list!
-				</div>	
-			</div>
 		<?php endif; ?>
 	</div>
 	<script type="text/javascript" src="/GudBuk/public/js/orderList.js"></script>
