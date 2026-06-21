@@ -26,38 +26,50 @@ class Order extends dbcore
 		// calculate total price
 		$total_price = 0;
 		foreach ($previewOrder as $entry) $total_price = $total_price + $entry['quantity'] * $entry['price'];
-		// insert into orders table
-		$insertData = array(
-			'customerid' => $userID,
-			'total_price' => $total_price,
-			'address' => $address,
-			'ordered_at' => date('Y-m-d H:i:s'),
-			'status' => 'PENDING'
-		);
-		// insert to get orderid
-		$orderid = $this->insertReturn('orders', $insertData, 'orderid');
-		foreach ($previewOrder as $entry) {
-			// insert into order_item
+
+		try {
+			// BEGIN TRANSACTION
+			$this->beginTransaction();
+			// insert into orders table
 			$insertData = array(
-				'unit_price' => $entry['price'],
-				'quantity' => $entry['quantity'],
-				'bookid' => $entry['bookid'],
-				'orderid' => $orderid
+				'customerid' => $userID,
+				'total_price' => $total_price,
+				'address' => $address,
+				'ordered_at' => date('Y-m-d H:i:s'),
+				'status' => 'PENDING'
 			);
-			$this->insert('order_item', $insertData);
+			// insert to get orderid
+			$orderid = $this->insertReturn('orders', $insertData, 'orderid');
+			foreach ($previewOrder as $entry) {
+				// insert into order_item
+				$insertData = array(
+					'unit_price' => $entry['price'],
+					'quantity' => $entry['quantity'],
+					'bookid' => $entry['bookid'],
+					'orderid' => $orderid
+				);
+				$this->insert('order_item', $insertData);
 
-			// remove ordered books from cart
-			$deleteStatement = "
-					DELETE FROM cart_item
-					WHERE cart_item_id = {$entry['cart_item_id']}
-				";
-			$this->update($deleteStatement);
+				// remove ordered books from cart
+				$deleteStatement = "
+						DELETE FROM cart_item
+						WHERE cart_item_id = {$entry['cart_item_id']}
+					";
+				$this->update($deleteStatement);
 
-			// increase sold in book
-			$bookid = $entry['bookid'];
-			$quantity = $entry['quantity'];
-			$update = "UPDATE book SET sold = sold + $quantity WHERE bookid = $bookid";
-			$this->update($update);
+				// increase sold in book
+				$bookid = $entry['bookid'];
+				$quantity = $entry['quantity'];
+				$update = "UPDATE book SET sold = sold + $quantity WHERE bookid = $bookid";
+				$this->update($update);
+			}
+			// END TRANSACTION
+			$this->commit();
+		} catch (Exception $e) {
+			if ($this->inTransaction()) {
+				$this->rollBack();
+			}
+			throw $e;
 		}
 		return $orderid;
 	}
