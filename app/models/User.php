@@ -10,36 +10,51 @@ class User extends Dbcore
 
     public function getAllUsers()
     {
-        return $this->getAll("SELECT * FROM customer");
+        return $this->getAll("SELECT * FROM customer WHERE rolename != 'ADMIN' AND is_active = true");
+    }
+    public function getTotalUser()
+    {
+        return $this->countRow("SELECT * FROM customer WHERE rolename != 'ADMIN' AND is_active = true");
+    }
+    public function getUserAdmin($customerperpage, $curpage, $offset)
+    {
+        /*
+        truyền data vào cho render()
+        */
+        $sql = "SELECT * FROM customer WHERE is_active = TRUE AND rolename != 'ADMIN' LIMIT $customerperpage OFFSET $offset";
+        $result = $this->getAll($sql);
+        return $result;
     }
 
     public function getUserByEmail($email)
     {
-        $sql = "select * from customer where email = '$email'";
+        $sql = "SELECT * from customer where email = '$email' AND is_active = true";
         return $this->getOne($sql);
     }
 
     public function getUserByUsername($username)
     {
-        $sql = "SELECT * FROM customer WHERE name = '$username'";
+        $sql = "SELECT * FROM customer WHERE name = '$username' AND is_active = true";
         return $this->getOne($sql);
     }
 
-	public function getUserByToken($token) {
-		$sql = "SELECT customerid FROM token_login WHERE token = '$token'";
-		return $this->getOne($sql);
-	}
+    public function getUserByToken($token)
+    {
+        $sql = "SELECT customerid FROM token_login WHERE token = '$token'  AND is_active = true";
+        return $this->getOne($sql);
+    }
 
     public function getUserByUserID($id)
     {
-        $sql = "SELECT * FROM customer WHERE customerID = $id";
+        $sql = "SELECT * FROM customer WHERE customerID = $id  AND is_active = true ";
         return $this->getOne($sql);
     }
 
-	public function getUserByOrderID($id) {
-		$sql = "SELECT customerid FROM orders WHERE orderid = $id";
-		return $this->getOne($sql);
-	}
+    public function getUserByOrderID($id)
+    {
+        $sql = "SELECT customerid FROM orders WHERE orderid = $id  AND is_active = true ";
+        return $this->getOne($sql);
+    }
 
     public function createUser($data)
     {
@@ -62,12 +77,13 @@ class User extends Dbcore
 
     public function isEmailTakenByOther($email, $customerid)
     {
-        $sql = "SELECT * FROM customer WHERE email = '$email' AND customerid != $customerid";
+        $sql = "SELECT * FROM customer WHERE email = '$email' AND customerid != $customerid  AND is_active = true";
         $row = $this->getOne($sql);
         return !empty($row);
     }
 
-    public function updateUser($customerid, $name, $email, $phone){
+    public function updateUser($customerid, $name, $email, $phone)
+    {
 
         $sql = "UPDATE customer
         SET 
@@ -80,5 +96,4 @@ class User extends Dbcore
 
         return $this->update($sql);
     }
-
 }

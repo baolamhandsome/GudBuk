@@ -1,0 +1,343 @@
+/* ────────────────────────────────────────── CUSTOMER PAGE ─────────────────────────── */
+
+.customer-container {
+    padding: 0;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* ────────────────────────────────────────── HEADER ─────────────────────────── */
+
+.customer-header {
+    background: #fff;
+    padding: 24px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+}
+
+.header-left h1 {
+    margin: 0 0 8px 0;
+    font-size: 1.75rem;
+    color: #222;
+    font-weight: 700;
+}
+
+.subtitle {
+    margin: 0;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+/* ────────────────────────────────────────── CUSTOMER GRID ─────────────────────────── */
+
+.customer-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ────────────────────────────────────────── CUSTOMER CARD ─────────────────────────── */
+
+.customer-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    transition: all 0.28s ease;
+    cursor: pointer;
+}
+
+.customer-card:hover {
+    box-shadow: 0 .8rem 1.5rem rgba(0, 0, 0, .15);
+}
+
+/* ──── Card Header ──── */
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background: #fff;
+    transition: background 0.18s ease;
+    user-select: none;
+}
+
+.customer-card:hover .card-header {
+    background: #fef9ec;
+}
+
+.card-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.customer-name {
+    margin: 0 0 6px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #222;
+    word-break: break-word;
+}
+
+.customer-email {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #999;
+    word-break: break-all;
+}
+
+/* ──── Card Actions ──── */
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+    margin-left: 16px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 1000;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    flex-shrink: 0;
+}
+
+.btn svg {
+    width: 25px;
+    height: 25px;
+    stroke: currentColor;
+}
+
+.btn-delete {
+
+    background: #82271d;
+    color: #fff;
+    border: 1px solid #6b2119;
+}
+
+.btn-delete:hover {
+    background: #c0392b;
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+}
+
+/* ──── Card Content (Hidden by default) ──── */
+
+.card-content {
+    max-height: 0;
+    overflow: hidden;
+    background: #f6fbf6;
+    transition: max-height 0.28s ease, padding 0.28s ease;
+}
+
+.customer-card.expanded .card-content {
+    max-height: 200px;
+    padding: 16px 24px;
+}
+
+.content-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.content-item:last-child {
+    border-bottom: none;
+}
+
+.content-item .label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #713846;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.content-item .value {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #222;
+    text-align: right;
+    word-break: break-word;
+}
+
+/* ────────────────────────────────────────── EMPTY STATE ─────────────────────────── */
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 60px 32px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    text-align: center;
+    color: #999;
+}
+
+.empty-state svg {
+    stroke: #bbb;
+    opacity: 0.6;
+}
+
+.empty-state h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+
+/* Pagination Section */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.pagination-btn {
+    background-color: rgb(255, 255, 255);
+    color: #701c21;
+    border: 2px solid rgb(255, 255, 255);
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background-color: #E83A47;
+    color: white;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-btn.active {
+    background-color: #E83A47;
+    color: white;
+}
+
+.pagination-info {
+    color: white;
+    font-size: 14px;
+    margin: 0 10px;
+    font-weight: 500;
+}
+
+
+/* ────────────────────────────────────────── RESPONSIVE ─────────────────────────── */
+
+@media (max-width: 768px) {
+    .customer-header {
+        padding: 16px;
+    }
+
+    .card-header {
+        padding: 16px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .card-info {
+        width: 100%;
+    }
+
+    .card-actions {
+        width: 100%;
+        margin-left: 0;
+        gap: 8px;
+    }
+
+    .btn {
+        flex: 1;
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+
+    .btn svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .customer-card.expanded .card-content {
+        max-height: 250px;
+    }
+
+    .content-item {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .content-item .value {
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .customer-container {
+        padding: 12px;
+    }
+
+    .customer-header {
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+
+    .header-left h1 {
+        font-size: 1.3rem;
+    }
+
+    .customer-grid {
+        gap: 12px;
+    }
+
+    .card-header {
+        padding: 12px;
+    }
+
+    .customer-name {
+        font-size: 0.95rem;
+    }
+
+    .customer-email {
+        font-size: 0.8rem;
+    }
+
+    .customer-card.expanded .card-content {
+        padding: 12px;
+    }
+
+    .content-item {
+        padding: 8px 0;
+        font-size: 0.85rem;
+    }
+
+    .empty-state {
+        padding: 40px 16px;
+    }
+}

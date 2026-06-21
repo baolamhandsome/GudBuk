@@ -58,10 +58,6 @@ class AdminController extends baseController
     }
     public function editBook()
     {
-        // echo json_encode([
-        //     'status' => 'DEBUG',
-        //     'raw_post_data' => $_POST
-        // ]);
         $this->bookModel->editBook();
         echo json_encode([
             'success' => true,
@@ -74,13 +70,36 @@ class AdminController extends baseController
         $bookid = $_POST['bookid'];
         $this->bookModel->deleteBook($bookid);
     }
+    public function showAddBook()
+    {
+        $allCategory = $this->catModel->getAllCat();
+        $this->renderViewAdmin('addBook', [$allCategory]);
+    }
+    public function addBook()
+    {
+        $this->bookModel->addBook();
+        echo json_encode([
+            'success' => true
+        ]);
+    }
 
     public function showCustomer()
     {
-        $this->renderViewAdmin('customer', []);
+        $customerperpage = 9;
+
+        $maxUser = $this->userModel->getTotalUser();
+
+        $maxpage = ceil($maxUser / $customerperpage);
+        $curpage = $_GET['curpage'] ?? 1;
+
+        if ($curpage < 1) $curpage = 1;
+        if ($curpage > $maxpage) $curpage = $maxpage;
+
+        $offset = ($curpage - 1) * $customerperpage;
+        $customers = $this->userModel->getUserAdmin($customerperpage, $curpage, $offset);
+
+        $dataUser = $this->userModel->getAllUsers();
+        $this->renderViewAdmin('customer', [$customers, $curpage, $maxpage]);
     }
-    public function showFinancial()
-    {
-        $this->renderViewAdmin('financial', []);
-    }
+    public function deleteCustomer() {}
 }

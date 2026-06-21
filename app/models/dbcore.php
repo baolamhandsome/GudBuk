@@ -126,4 +126,10 @@ class Dbcore
     {
         return $this->conn->inTransaction();
     }
+
+    public function getLastInsertId()
+    {
+        // Trả về ID của bản ghi gần nhất vừa được insert trong phiên làm việc hiện tại
+        return $this->conn->lastInsertId();
+    }
 }

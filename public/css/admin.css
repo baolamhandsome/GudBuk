@@ -462,13 +462,14 @@ body {
 }
 
 .btn-edit,
+.btn-add-book,
 .btn-delete {
     background-color: #701c21;
     color: #ffffff;
     border: none;
-    padding: 10px 20px;
+    padding: 17px 30px;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 18px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }

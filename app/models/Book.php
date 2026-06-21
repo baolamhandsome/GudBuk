@@ -60,7 +60,6 @@ class Book extends Dbcore
         $price = $_POST['price'] ?? '';
         $stock_quantity = $_POST['stock_quantity'] ?? '';
         $description = $_POST['description'] ?? '';
-        $isbn = $_POST['isbn'] ?? '';
 
         try {
             // BEGIN TRANSACTION
@@ -73,7 +72,6 @@ class Book extends Dbcore
                     author = '$author',
                     price = $price,
                     stock_quantity = $stock_quantity,
-                    isbn = '$isbn',
                     description = '$description'
                 WHERE 
                     bookid = $bookid;
@@ -84,6 +82,52 @@ class Book extends Dbcore
             //phase 2: udpate book_category (delete the existings and add new categories)
             $sql = "DELETE FROM book_category WHERE bookid = $bookid";
             $this->update($sql);
+
+            foreach ($bookCategories as $bookCategory):
+                $insertData = [
+                    'bookid' => $bookid,
+                    'categoryid' => $bookCategory
+                ];
+                $this->insert('book_category', $insertData);
+            endforeach;
+            // END TRANSACTION
+            $this->commit();
+        } catch (Exception $e) {
+            if ($this->inTransaction()) {
+                $this->rollBack();
+            }
+            throw $e;
+        }
+    }
+    public function addBook()
+    {
+        $bookCategories = $_POST['category'] ?? [];
+        $title = $_POST['title'] ?? '';
+        $author = $_POST['author'] ?? '';
+        $price = $_POST['price'] ?? '';
+        $stock_quantity = $_POST['stock_quantity'] ?? '';
+        $description = $_POST['description'] ?? '';
+        $isbn = $_POST['isbn'] ?? '';
+
+
+        try {
+            // BEGIN TRANSACTION
+            $this->beginTransaction();
+
+            //phase 1: add book 
+            $insertData = [
+                'title' => $title,
+                'author' => $author,
+                'isbn' => $isbn,
+                'price' => $price,
+                'stock_quantity' => $stock_quantity,
+                'description' => $description
+            ];
+            $this->insert('book', $insertData);
+
+            //phase 2: add into book_category
+
+            $bookid = $this->getLastInsertId();
 
             foreach ($bookCategories as $bookCategory):
                 $insertData = [

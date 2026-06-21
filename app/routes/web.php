@@ -11,11 +11,11 @@ $router->get('/admin-dashboard/store', 'AdminController@showStore', ['AuthMiddle
 $router->get('/admin-dashboard/store/edit', 'AdminController@showEditBook', ['AuthMiddleware']);
 $router->post('/admin-dashboard/store/edit', 'AdminController@editBook', ['AuthMiddleware']);
 $router->post('/admin-dashboard/store/delete', 'AdminController@deleteBook', ['AuthMiddleware']);
+$router->get('/admin-dashboard/store/add', 'AdminController@showAddbook', ['AuthMiddleware']);
+$router->post('/admin-dashboard/store/add', 'AdminController@addBook', ['AuthMiddleware']);
 
 $router->get('/admin-dashboard/customer', 'AdminController@showCustomer', ['AuthMiddleware']);
-$router->get('/admin-dashboard/customer/delete', 'AdminController@deleteCustomer', ['AuthMiddleware']);
-
-$router->get('/admin-dashboard/financial', 'AdminController@showFinancial', ['AuthMiddleware']);
+$router->post('/admin-dashboard/customer/delete', 'AdminController@deleteCustomer', ['AuthMiddleware']);
 
 // Get customerid based on token_login
 $router->get('/user', 'UserController@getCurrentUser');
