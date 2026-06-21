@@ -3,10 +3,12 @@
 
 		public function index() {
 			$userid = $_GET['userid'] ?? null;
+			// check if userid is in url
 			if (isset($userid)) {
 				$cart = new Cart();	
 				$cartDetail = $cart->getCart($userid);
-				//var_dump($cartDetail);
+				if (empty($cartDetail)) $cartDetail['empty'] = true;
+				else $cartDetail['empty'] = false;
 				$this->renderView('cart', $cartDetail);
 			} else {
 				echo '404';
@@ -43,6 +45,18 @@
 				$cart = new Cart();
 				$result = $cart->removeBook($cart_book_id);
 				echo json_encode("ok");
+			} else {
+				echo json_encode("404");
+			}
+		}
+
+		public function add() {
+			$bookid = $_POST['bookid'] ?? null;
+			$customerid = $_POST['userid'] ?? null;
+			if (isset($bookid) && isset($customerid)) {
+				$cart = new Cart();
+				$result = $cart->addBook($bookid, $customerid);
+				echo json_encode("success");
 			} else {
 				echo json_encode("404");
 			}

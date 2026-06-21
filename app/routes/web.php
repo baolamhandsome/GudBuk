@@ -17,12 +17,15 @@ $router->get('/admin-dashboard/customer/delete', 'AdminController@deleteCustomer
 
 $router->get('/admin-dashboard/financial', 'AdminController@showFinancial', ['AuthMiddleware']);
 
+// Get customerid based on token_login
+$router->get('/user', 'UserController@getCurrentUser');
+
 //thành phần thứ 2 trong hàm get() - là $action:  là cách chúng ta quy ước chức năng của url
 $router->get('/', 'HomeController@index');
 $router->get('/home', 'HomeController@index'); // xử lí phân trang bằng tham số (?curpage=)
 
 $router->post('/home', 'HomeController');
-//====book
+//==== book
 $router->get('/search', 'BookController@search', []);    // Tìm kiếm sách (với ?query=...)
 $router->get('/book', 'BookController@show', []);        // Xem chi tiết sách (với ?bookid=...)
 
@@ -40,16 +43,17 @@ $router->get('/profile', 'UserController@profile', ['AuthMiddleware']);         
 $router->post('/profile', 'UserController@updateProfile', ['AuthMiddleware']);  // Cập nhật profile
 
 // ===== SHOPPING CART ROUTES =====
-$router->get('/cart', 'CartController@index', ['AuthMiddleware']);       // Xem giỏ hàng
+$router->get('/cart', 'CartController@index', ['AuthMiddleware', 'UserIDMiddleware']);       // Xem giỏ hàng
 $router->post('/cart/add', 'CartController@add', ['AuthMiddleware']);    // Thêm sách vào giỏ
 $router->post('/cart/remove', 'CartController@remove', ['AuthMiddleware']); // Xóa sách khỏi giỏ
 $router->post('/cart/modify', 'CartController@modify', ['AuthMiddleware']);   // Cập nhật số lượng
 $router->post('/cart/check', 'CartController@check', ['AuthMiddleware']);   // Chọn/bỏ chọn sách để order
 
 // ===== ORDER ROUTES =====
-$router->get('/orderPreview', 'OrderController@orderPreview'); // preview đơn hàng sắp đặt
+$router->get('/orderPreview', 'OrderController@orderPreview', ['AuthMiddleware', 'UserIDMiddleware']); // preview đơn hàng sắp đặt
 $router->post('/placeOrder', 'OrderController@placeOrder'); // Đặt hàng
-$router->get('/orderView', 'OrderController@viewOrder');    // coi đơn hàng
+$router->get('/orderView', 'OrderController@viewOrder', ['AuthMiddleware', 'OrderIDMiddleware']);    // coi đơn hàng
+$router->get('/orderList', 'OrderController@viewOrderList', ['AuthMiddleware', 'UserIDMiddleware']); // coi danh sách đơn hàng
 $router->get('/order', 'OrderController@index');     // Xem trang đặt hàng
 $router->post('/order', 'OrderController@store');    // Xử lý đặt hàng
 $router->get('/order/history', 'OrderController@history'); // Xem lịch sử đơn hàng

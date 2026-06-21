@@ -39,7 +39,7 @@ body {
     gap: 15px;
 }
 
-.btn {
+.buy-now-btn, .add-cart-btn {
     background-color: #701c21;
     color: #ffffff;
     border: none;

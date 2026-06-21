@@ -58,7 +58,12 @@ class AuthController extends BaseController
     /// LOGIN 
     public function login()
     {
-        $this->renderView('login');
+        /*$this->renderView('login');*/
+
+        $this->renderView('login', [
+            'pageTitle' => 'Login',
+            'error' => 'Invalid credentials'
+        ]);
     }
     /*
     + Validate data : email(getOne) 

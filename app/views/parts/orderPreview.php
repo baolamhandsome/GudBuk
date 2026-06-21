@@ -8,27 +8,29 @@
 
 <body>
 	<div class="order-container">
-		<div class="order-list">
-			<?php foreach ($data as $entry): ?>
-				<div class="book-container">
-					<div class="name-container">
-						<?= $entry['name'] ?>
+		<?php if (!empty($data)): ?>
+			<div class="order-list">
+				<?php foreach ($data as $entry): ?>
+					<div class="book-container">
+						<div class="name-container">
+							<?= $entry['title'] ?>
+						</div>
+						<div class="price-container">
+							<?= $entry['price'] * $entry['quantity'] ?>$
+						</div>
 					</div>
-					<div class="price-container">
-						<?= $entry['price'] * $entry['quantity'] ?>$
-					</div>
+				<?php endforeach; ?>
+				<input class="address-input" type="textbox" placeholder="Enter your address" />
+				<div class="order-button-container">
+					<?php
+					$total = 0;
+					foreach ($data as $entry) $total += $entry['price'] * $entry['quantity'];
+					echo "<div class=\"total-price\">{$total}$</div>";
+					?>
+					<button class="order-button" data-userid=<?= $entry['customerid'] ?>>Order</button>
 				</div>
-			<?php endforeach; ?>
-			<input class="address-input" type="textbox" placeholder="Enter your address" />
-			<div class="order-button-container">
-				<?php
-				$total = 0;
-				foreach ($data as $entry) $total += $entry['price'] * $entry['quantity'];
-				echo "<div class=\"total-price\">{$total}$</div>";
-				?>
-				<button class="order-button" data-userid=<?= $entry['userid'] ?>>Order</button>
 			</div>
-		</div>
+		<?php endif; ?>
 	</div>
 	<script type="text/javascript" src="/GudBuk/public/js/orderPreview.js"></script>
 </body>

@@ -25,11 +25,21 @@ class User extends Dbcore
         return $this->getOne($sql);
     }
 
+	public function getUserByToken($token) {
+		$sql = "SELECT customerid FROM token_login WHERE token = '$token'";
+		return $this->getOne($sql);
+	}
+
     public function getUserByUserID($id)
     {
         $sql = "SELECT * FROM customer WHERE customerID = $id";
         return $this->getOne($sql);
     }
+
+	public function getUserByOrderID($id) {
+		$sql = "SELECT customerid FROM orders WHERE orderid = $id";
+		return $this->getOne($sql);
+	}
 
     public function createUser($data)
     {
@@ -49,4 +59,26 @@ class User extends Dbcore
 
         return $this->insert('customer', $insertData);
     }
+
+    public function isEmailTakenByOther($email, $customerid)
+    {
+        $sql = "SELECT * FROM customer WHERE email = '$email' AND customerid != $customerid";
+        $row = $this->getOne($sql);
+        return !empty($row);
+    }
+
+    public function updateUser($customerid, $name, $email, $phone){
+
+        $sql = "UPDATE customer
+        SET 
+            name    = '$name',
+            email   = '$email',
+            phone   = '$phone'
+        WHERE 
+            customerid = '$customerid';
+        ";
+
+        return $this->update($sql);
+    }
+
 }
