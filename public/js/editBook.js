@@ -16,7 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formData = new FormData(form);
 
-        // Thay đổi URL này thành đúng Route xử lý Update trong backend của bạn
+        // --- PHẦN BỔ SUNG: Lấy các category đã chọn ---
+        const selectedCategories = document.querySelectorAll('.category-btn.category-selected');
+
+        selectedCategories.forEach(btn => {
+            // Nếu bạn có attribute data-id="1" trong HTML, hãy dùng: btn.dataset.id
+            // Hiện tại theo cấu trúc của bạn, ta sẽ lấy textContent (tên category)
+            const categoryId = btn.getAttribute('id');
+
+            // Append vào formData dưới dạng mảng (categories[])
+            formData.append('category[]', categoryId);
+        });
         const response = await fetch('edit', {
             method: 'POST',
             body: formData
@@ -27,13 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const data = await response.json();
-        bookid = data.bookid
+        const bookid = data.bookid;
+
         if (data.success) {
             alert('Cập nhật thông tin sách thành công!');
-            // Chuyển hướng Admin về lại trang danh sách cửa hàng
-            window.location.href = `/gudbuk/admin-dashboard/store/edit?bookid=${bookid}`;
         } else {
             alert('Có lỗi xảy ra: ' + data.message);
         }
+    });
+
+    // Phần xử lý click nút category (giữ nguyên hoặc tối ưu)
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            this.classList.toggle('category-selected');
+        });
     });
 });

@@ -6,15 +6,17 @@ class AdminController extends baseController
     private $orderModel;
     private $tokenModel;
     private $bookperpage;
+    private $catModel;
+
     public function __construct()
     {
         $this->userModel = new User();
         $this->bookModel = new Book();
         $this->orderModel = new Order();
         $this->tokenModel = new tokenLogin();
+        $this->catModel = new Category();
         $this->bookperpage = 9;
     }
-
     /*
         + tổng doanh thu 
         + lượng khách truy cập hôm nay
@@ -50,14 +52,20 @@ class AdminController extends baseController
     {
         $bookid = $_GET['bookid'];
         $dataBook = $this->bookModel->getOneBook($bookid);
-        $this->renderViewAdmin('editBook', [$dataBook]);
+        $allCategory = $this->catModel->getAllCat();
+        $bookCategories = $this->catModel->getBookCat($bookid);
+        $this->renderViewAdmin('editBook', [$dataBook, $allCategory, $bookCategories]);
     }
     public function editBook()
     {
+        // echo json_encode([
+        //     'status' => 'DEBUG',
+        //     'raw_post_data' => $_POST
+        // ]);
         $this->bookModel->editBook();
         echo json_encode([
             'success' => true,
-            'bookid' => $_POST['bookid']
+            'bookid' => $_POST['bookid'],
         ]);
     }
 

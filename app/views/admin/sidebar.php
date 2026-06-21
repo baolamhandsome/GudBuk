@@ -7,17 +7,17 @@ $cus = '';
 $fin = '';
 switch ($view) {
     case 'overview':
-        $ov = 'active';
+        $ov = 'nav-active';
         break;
 
     case 'store':
-        $st = 'active';
+        $st = 'nav-active';
         break;
     case 'customer':
-        $cus = 'active';
+        $cus = 'nav-active';
         break;
     case 'fin':
-        $fin = 'active';
+        $fin = 'nav-active';
         break;
     default:
         break;

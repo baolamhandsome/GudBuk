@@ -53,26 +53,52 @@ class Book extends Dbcore
     }
     public function editBook()
     {
+        $bookCategories = $_POST['category'];
         $bookid = $_POST['bookid'] ?? '';
         $title = $_POST['title'] ?? '';
         $author = $_POST['author'] ?? '';
         $price = $_POST['price'] ?? '';
         $stock_quantity = $_POST['stock_quantity'] ?? '';
         $description = $_POST['description'] ?? '';
-        $category = $_POST['category'] ?? '';
         $isbn = $_POST['isbn'] ?? '';
-        $sql = "UPDATE book
-        SET 
-            title = '$title',
-            author = '$author',
-            price = $price,
-            stock_quantity = $stock_quantity,
-            isbn = '$isbn',
-            description = '$description'
-        WHERE 
-            bookid = $bookid;
-        ";
 
-        $this->update($sql);
+        try {
+            // BEGIN TRANSACTION
+            $this->beginTransaction();
+
+            //phase 1: udpate book infor
+            $sql = "UPDATE book
+                SET 
+                    title = '$title',
+                    author = '$author',
+                    price = $price,
+                    stock_quantity = $stock_quantity,
+                    isbn = '$isbn',
+                    description = '$description'
+                WHERE 
+                    bookid = $bookid;
+            ";
+
+            $this->update($sql);
+
+            //phase 2: udpate book_category (delete the existings and add new categories)
+            $sql = "DELETE FROM book_category WHERE bookid = $bookid";
+            $this->update($sql);
+
+            foreach ($bookCategories as $bookCategory):
+                $insertData = [
+                    'bookid' => $bookid,
+                    'categoryid' => $bookCategory
+                ];
+                $this->insert('book_category', $insertData);
+            endforeach;
+            // END TRANSACTION
+            $this->commit();
+        } catch (Exception $e) {
+            if ($this->inTransaction()) {
+                $this->rollBack();
+            }
+            throw $e;
+        }
     }
 }
