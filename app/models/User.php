@@ -25,11 +25,21 @@ class User extends Dbcore
         return $this->getOne($sql);
     }
 
+	public function getUserByToken($token) {
+		$sql = "SELECT customerid FROM token_login WHERE token = '$token'";
+		return $this->getOne($sql);
+	}
+
     public function getUserByUserID($id)
     {
         $sql = "SELECT * FROM customer WHERE customerID = $id";
         return $this->getOne($sql);
     }
+
+	public function getUserByOrderID($id) {
+		$sql = "SELECT customerid FROM orders WHERE orderid = $id";
+		return $this->getOne($sql);
+	}
 
     public function createUser($data)
     {

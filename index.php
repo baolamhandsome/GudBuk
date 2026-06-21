@@ -36,8 +36,10 @@ require_once './app/cores/Function.php';
 //$url = isset($_GET['url']) ? '/' . $_GET['url'] : '/';
 
 $url = strtok($_SERVER['REQUEST_URI'], '?');
-$basePath = '/gudbuk';
-if (str_starts_with($url, $basePath)) $url = substr($url, strlen($basePath));
+$basePath1 = '/gudbuk';
+$basePath2 = '/GudBuk';
+if (str_starts_with($url, $basePath1)) $url = substr($url, strlen($basePath1));
+if (str_starts_with($url, $basePath2)) $url = substr($url, strlen($basePath2));
 $method = $_SERVER['REQUEST_METHOD'];
 
 //DEBUG : 

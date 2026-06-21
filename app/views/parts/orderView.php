@@ -2,7 +2,7 @@
 //var_dump($data);
 $total = 0;
 foreach ($data as $entry) {
-	$total += $entry['price'] * $entry['quantity'];
+	$total += $entry['unit_price'] * $entry['quantity'];
 }
 ?>
 
@@ -16,31 +16,33 @@ foreach ($data as $entry) {
 
 <body>
 	<div class="order-container">
-		<div class="order-list">
-			<?php foreach ($data as $entry): ?>
-				<div class="book-container">
-					<div class="name-author-container">
-						<div class="name">
-							<?= $entry['name'] ?>
+		<?php if (!empty($data)): ?>
+			<div class="order-list">
+				<?php foreach ($data as $entry): ?>
+					<div class="book-container">
+						<div class="name-author-container">
+							<div class="name">
+								<?= $entry['title'] ?>
+							</div>
+							<div class="author">
+								<?= $entry['author'] ?>
+							</div>
 						</div>
-						<div class="author">
-							<?= $entry['author'] ?>
+						<div class="quantity-price-container">
+							<div class="quantity">
+								<?= $entry['quantity'] ?> books
+							</div>
+							<div class="price">
+								<?= $entry['unit_price'] * $entry['quantity'] ?>$
+							</div>
 						</div>
 					</div>
-					<div class="quantity-price-container">
-						<div class="quantity">
-							<?= $entry['quantity'] ?> books
-						</div>
-						<div class="price">
-							<?= $entry['price'] * $entry['quantity'] ?>$
-						</div>
-					</div>
+				<?php endforeach; ?>
+				<div class="total-price-container">
+					<?= $total ?>$
 				</div>
-			<?php endforeach; ?>
-			<div class="total-price-container">
-				<?= $total ?>
 			</div>
-		</div>
+		<?php endif; ?>
 	</div>
 </body>
 

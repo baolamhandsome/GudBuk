@@ -4,9 +4,7 @@ for (let index = 0; index < deleteButtonList.length; index++) {
 	const button = deleteButtonList.item(index);
 	const cart_book_id = button.dataset.cartbookid;
 	button.addEventListener("click", function () {
-		fetch(`/gudbuk/cart/remove`, {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		fetch(`/gudbuk/cart/remove`, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: `cart_book_id=${cart_book_id}`
 		})
 			.then(res => res.json())
@@ -89,5 +87,7 @@ const orderButton = document.getElementsByClassName("order-button")[0];
 const userid = orderButton.dataset.userid;
 
 orderButton.addEventListener("click", function () {
-	window.location.href = `orderPreview?userid=${userid}`;
+	if (userid != "") {
+		window.location.href = `orderPreview?userid=${userid}`;
+	}
 })

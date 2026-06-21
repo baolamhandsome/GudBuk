@@ -34,20 +34,36 @@ class Router
                 foreach ($middlewares as $middlewareClass) {
                     require_once "./app/middlewares/$middlewareClass.php";
                     $middleware = new $middlewareClass();
-                    $role = $middleware->handle();
 
-                    if (!$role) {
-                        redirect('http://localhost/gudbuk/login');
-                        exit();
-                    }
-                    if (strpos($url, '/admin-dashboard') === 0) {
-                        if ($role != "ADMIN") {
-                            // Người dùng thường cố vào trang admin
-                            header("HTTP/1.1 403 Forbidden");
-                            echo "<h1>403 - Lỗi bảo mật</h1><p>Bạn không có quyền truy cập trang quản trị!</p>";
-                            exit();
-                        }
-                    }
+					if ($middlewareClass === "AuthMiddleware") {
+						$role = $middleware->handle();
+						if (!$role) {
+							redirect('http://localhost/gudbuk/login');
+							exit();
+						}
+						if (strpos($url, '/admin-dashboard') === 0) {
+							if ($role != "ADMIN") {
+								// Người dùng thường cố vào trang admin
+								header("HTTP/1.1 403 Forbidden");
+								echo "<h1>403 - Lỗi bảo mật</h1><p>Bạn không có quyền truy cập trang quản trị!</p>";
+								exit();
+							}
+						}
+					} else if ($middlewareClass === "UserIDMiddleware") {
+						$userid = $_GET['userid'];
+						if (!$userid) continue;
+						$check = $middleware->handle($userid);
+						if (!$check) {
+							redirect("http://localhost/gudbuk/home");
+						}
+					} else if ($middlewareClass === "OrderIDMiddleware") {
+						$orderid = $_GET['orderid'];
+						if (!$orderid) continue;
+						$check = $middleware->handle($orderid);
+						if (!$check) {
+							redirect("http://localhost/gudbuk/home");
+						}
+					}
                 }
             }
 
