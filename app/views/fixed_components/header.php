@@ -26,10 +26,6 @@
             <div id=" cart-btn" class="fas fa-shopping-cart"></div>
         </a>
 
-        <a href="/gudbuk/profile">
-            <div id="user-btn" class="fas fa-user"></div>
-        </a>
-
         <a>
             <div id="order-btn" class="fas fa-basket-shopping"> </div>
         </a>
