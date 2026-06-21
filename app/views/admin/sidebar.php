@@ -16,8 +16,10 @@ switch ($view) {
     case 'customer':
         $cus = 'active';
         break;
-    default:
+    case 'fin':
         $fin = 'active';
+        break;
+    default:
         break;
 }
 ?>

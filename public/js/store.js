@@ -1,24 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Lấy thực thể Container cha chứa toàn bộ các card sách
-    const booksGrid = document.querySelector('.btn-edit');
+    //container cha chứa tất cả các card sách
+    const bookContainer = document.querySelector('.store-grid');
 
-    if (!booksGrid) return; // kiểm tra an toàn nếu không tìm thấy element
+    bookContainer.addEventListener('click', async (event) => {
+        const target = event.target;
 
-    // 2. Sử dụng kỹ thuật Event Delegation (Ủy nhiệm sự kiện)
-    booksGrid.addEventListener('click', (event) => {
-        // Tìm thẻ .book-card gần nhất tính từ vị trí con trỏ chuột vừa click trúng
-        const bookCard = event.target.closest('.store-card');
+        // Tìm element cha chứa ID của sách
+        const card = target.closest('.book-card');
+        if (!card) return;
 
-        // Nếu click trúng khoảng không nằm ngoài các card sách thì bỏ qua
-        if (!bookCard) return;
+        const bookId = card.getAttribute('data-bookid');
 
-        // 3. Đọc mã định danh bookid từ bộ thuộc tính data-* (dataset)
-        const bookId = bookCard.dataset.bookid;
+        // Xử lý nút EDIT
+        if (target.classList.contains('btn-edit')) {
+            handleEdit(bookId);
+        }
 
-        if (bookId) {
-            // 4. Thực hiện điều hướng an toàn bằng phương thức GET chuẩn RESTful API
-            // URL này sẽ khớp với Router/Controller hiển thị trang chi tiết sách của bạn
-            window.location.href = `/gudbuk/book?bookid=${encodeURIComponent(bookId)}`;
+        // Xử lý nút DELETE
+        if (target.classList.contains('btn-delete')) {
+            if (confirm('Bạn có chắc chắn muốn xóa cuốn sách này?')) {
+                await handleDelete(bookId, card);
+            }
         }
     });
 });
+
+function handleEdit(id) {
+    window.location.href = `./store/edit?bookid=${id}`;
+}
+
+async function handleDelete(id, elementToRemove) {
+    try {
+        const response = await fetch(`store/delete`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `bookid=${id}`
+        });
+
+        if (response.ok) {
+            alert('Xóa thành công!');
+            elementToRemove.remove(); // Xóa khỏi giao diện mà không cần reload trang
+        } else {
+            const errorData = await response.json();
+            alert(`Lỗi: ${errorData.message || 'Không thể xóa'}`);
+        }
+    } catch (error) {
+        console.error('Lỗi kết nối:', error);
+        alert('Đã xảy ra lỗi khi kết nối tới server.');
+    }
+}

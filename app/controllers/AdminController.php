@@ -46,6 +46,27 @@ class AdminController extends baseController
 
         $this->renderViewAdmin('store', [$bestBook, $curpage, $maxpage]);
     }
+    public function showEditBook()
+    {
+        $bookid = $_GET['bookid'];
+        $dataBook = $this->bookModel->getOneBook($bookid);
+        $this->renderViewAdmin('editBook', [$dataBook]);
+    }
+    public function editBook()
+    {
+        $this->bookModel->editBook();
+        echo json_encode([
+            'success' => true,
+            'bookid' => $_POST['bookid']
+        ]);
+    }
+
+    public function deleteBook()
+    {
+        $bookid = $_POST['bookid'];
+        $this->bookModel->deleteBook($bookid);
+    }
+
     public function showCustomer()
     {
         $this->renderViewAdmin('customer', []);
