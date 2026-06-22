@@ -36,7 +36,7 @@ class Order extends dbcore
 				'total_price' => $total_price,
 				'address' => $address,
 				'ordered_at' => date('Y-m-d H:i:s'),
-				'status' => 'PENDING'
+				'status' => 'COMPLETED'
 			);
 			// insert to get orderid
 			$orderid = $this->insertReturn('orders', $insertData, 'orderid');
@@ -83,13 +83,14 @@ class Order extends dbcore
 		return $this->getAll($statement);
 	}
 
-	public function getAllOrder($userid) {
+	public function getAllOrder($userid)
+	{
 		$statement = "
 			SELECT * FROM orders WHERE customerid = $userid;
 		";
 		return $this->getAll($statement);
 	}
-	
+
 
 	public function getTotalRevenue()
 	{

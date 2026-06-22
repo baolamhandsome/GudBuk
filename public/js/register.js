@@ -11,7 +11,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const fullname = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
     const password = document.getElementById('password').value;
-    const address = document.getElementById('address').value;
+    // const address = document.getElementById('address').value;
     const password_confirm = document.getElementById('password_confirm').value;
 
     // Tạo một REQ gửi bẳng AJAX

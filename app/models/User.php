@@ -64,7 +64,7 @@ class User extends Dbcore
             'name' => $data['fullname'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'address' => $data['address'],
+            // 'address' => $data['address'],
             'password' => $data['password'], // Hash mật khẩu
             'cartid' => $cartid
             //password_hash($data['passwword'], PASSWORD_BCRYPT),

@@ -40,15 +40,6 @@
                         <label for="phone">Phone Number</label>
                     </div>
                 </div>
-
-                <!-- Address input field (optional) -->
-                <div class="form-group">
-                    <div class="input-wrapper">
-                        <textarea id="address" name="address"></textarea>
-                        <label for="address">Address</label>
-                    </div>
-                </div>
-
                 <!-- Password input field -->
                 <div class="form-group">
                     <div class="input-wrapper">

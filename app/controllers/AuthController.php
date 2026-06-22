@@ -31,23 +31,25 @@ class AuthController extends BaseController
         $email = $_POST['email'];
         $fullname = $_POST['name'];
         $phone = $_POST['phone'];
-        $address = $_POST['address'];
+        // $address = $_POST['address'];
         $password = $_POST['password'];
         $password_confirm = $_POST['password_confirm'];
 
         $haveEmail = $this->userModel->getUserByEmail($email);
 
-        if ($haveEmail || !$fullname || !$phone || !$address || !$password || !$password_confirm || $password != $password_confirm) {
+        if ($haveEmail || !$fullname || !$phone || !$password || !$password_confirm || $password != $password_confirm) {
             request(false, 'Đăng kí không thành công thành công');
             exit;
         }
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $data = [
             'email' => $email,
             'fullname' => $fullname,
             'phone' => $phone,
-            'address' => $address,
-            'password' => $password
+            // 'address' => $address,
+            'password' => $hashedPassword
         ];
         $this->userModel->createUser($data);
 
@@ -83,7 +85,7 @@ class AuthController extends BaseController
             exit;
         }
 
-        if ($have == null || ($have && $have['password'] != $password)) {
+        if ($have == null || !password_verify($password, $have['password'])) {
             request(false, 'Email hoặc mật khẩu không đúng!');
             exit;
         } else {
