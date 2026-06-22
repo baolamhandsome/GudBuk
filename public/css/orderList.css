@@ -1,57 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+:root {
+	--color-amber: #BD7C3F;
+	--color-amber-light: #ECB955;
+	--color-bg: #F6F4F1;
+	--color-card: #FFFFFF;
+	--color-dark-green: #1D3829;
+	--color-text: #20241F;
+	--color-text-light: #6B6F69;
+	--color-border: #E7E3DC;
+	--color-pill: #F1ECE3;
+}
+
+* {
+	font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
 .order-list-container {
 	height: 100vh;
-	width: 100vw;
-	background-color: #CFECF3;
-
-	padding: 20px;
-	/* padding-top: 20px;
-	padding-bottom: 20px;
-	padding-left: 20px;
-	padding-right: 20px; */
+	width: 100%;
+	background-color: var(--color-bg);
+	padding: 50px 20px;
 	box-sizing: border-box;
 
-	border-radius: 10px;
-	
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	row-gap: 10px;
-
+	row-gap: 0;
 	overflow-y: auto;
 	position: relative;
+	color: var(--color-text);
+}
+
+.order-list-title {
+	font-size: 38px;
+	font-weight: 800;
+	color: var(--color-text);
+	margin: 0 0 28px;
+	text-align: center;
+}
+
+.order-list {
+	width: 95%;
+	max-width: 900px;
+	background-color: var(--color-card);
+	padding: 30px;
+	box-sizing: border-box;
+	border-radius: 16px;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	row-gap: 14px;
 }
 
 .order-container {
-	height: 30%;
-	width: 95%;
-	background-color: #FFFDEB;
-	
+	height: auto;
+	width: 100%;
+	background-color: var(--color-bg);
+	border: 1px solid var(--color-border);
+
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-columns: 0.6fr 1fr 1fr 1.4fr;
+	column-gap: 16px;
+	border-radius: 12px;
+	padding: 20px 22px;
+	box-sizing: border-box;
 
-	border-radius: 10px;
-
-	padding: 20px;
+	font-family: inherit;
+	text-align: left;
+	cursor: pointer;
+	transition: box-shadow .15s ease, border-color .15s ease;
+}
+.order-container:hover {
+	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+	border-color: var(--color-amber);
 }
 
 .order-number {
-	font-size: 35px;	
-	font-weight: bold;
+	font-size: 26px;
+	font-weight: 800;
+	color: var(--color-amber);
 	display: flex;
 	align-items: center;
 }
 
 .ordered-time, .total-price, .address {
-	font-size: 20px;
+	font-size: 15px;
+	color: var(--color-text);
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	gap: 5px;
+	gap: 4px;
 }
 
 .ordered-time-label, .total-price-label, .address-label {
-	text-decoration: underline;
-	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	font-weight: 700;
+	font-size: 11px;
+	color: var(--color-text-light);
 }
 
 .incorrect {
@@ -59,10 +109,11 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #FF6060;
-	border-radius: 10px;
+	background-color: #F4B5B5;
+	border-radius: 12px;
+	color: #7A2020;
 }
-
 .incorrect-label {
-	font-size: 30px;
+	font-size: 28px;
+	font-weight: 700;
 }

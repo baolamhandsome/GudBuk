@@ -5,18 +5,16 @@ foreach ($data as $entry) {
 	$total += $entry['unit_price'] * $entry['quantity'];
 }
 ?>
-
 <!DOCTYPE html>
 <html>
-
 <head>
 	<link rel="stylesheet" href="/GudBuk/public/css/global.css">
 	<link rel="stylesheet" href="/GudBuk/public/css/orderView.css">
 </head>
-
 <body>
 	<div class="order-container">
 		<?php if (!empty($data)): ?>
+			<h1 class="order-title">Order Details</h1>
 			<div class="order-list">
 				<?php foreach ($data as $entry): ?>
 					<div class="book-container">
@@ -45,5 +43,4 @@ foreach ($data as $entry) {
 		<?php endif; ?>
 	</div>
 </body>
-
 </html>

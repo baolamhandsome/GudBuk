@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<link rel="stylesheet" href="/GudBuk/public/css/global.css">
 	<link rel="stylesheet" href="/GudBuk/public/css/cart.css">
 </head>
-
 <body>
 	<div class="cart-web">
+		<h1 class="cart-title">My Cart</h1>
 		<div class="books-container">
 			<?php if ($data['empty'] == false): ?>
 				<?php unset($data['empty']) ?>
@@ -39,5 +38,4 @@
 	</div>
 	<script type="text/javascript" src="/GudBuk/public/js/cart.js"></script>
 </body>
-
 </html>
