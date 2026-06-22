@@ -101,5 +101,9 @@ class AdminController extends baseController
         $dataUser = $this->userModel->getAllUsers();
         $this->renderViewAdmin('customer', [$customers, $curpage, $maxpage]);
     }
-    public function deleteCustomer() {}
+    public function deleteCustomer()
+    {
+        $customerid = $_POST['customerid'];
+        $this->userModel->deleteCustomer($customerid);
+    }
 }

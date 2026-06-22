@@ -96,4 +96,9 @@ class User extends Dbcore
 
         return $this->update($sql);
     }
+    public function deleteCustomer($customerid)
+    {
+        $sql = "UPDATE customer set is_active = false where customerid = $customerid";
+        $this->update($sql);
+    }
 }

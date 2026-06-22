@@ -35,9 +35,9 @@ $maxpage = $data[2] ?? 1;
         <div class="customer-grid">
             <?php if (!empty($customers)): ?>
                 <?php foreach ($customers as $customer): ?>
-                    <div class="customer-card">
+                    <div class="customer-card" data-customerid="<?php echo $customer['customerid']; ?>">
                         <!-- Card Header (Click to expand) -->
-                        <div class="card-header" onclick="toggleCardExpand(this)">
+                        <div class=" card-header" onclick="toggleCardExpand(this)">
                             <div class="card-info">
                                 <p class="customer-name"><?php echo htmlspecialchars($customer['name'] ?? 'N/A'); ?></p>
                             </div>
@@ -100,13 +100,7 @@ $maxpage = $data[2] ?? 1;
             <?php endif; ?>
         </div>
     <?php endif; ?>
-    <script>
-        // Toggle card expand/collapse
-        function toggleCardExpand(headerElement) {
-            const card = headerElement.closest('.customer-card');
-            card.classList.toggle('expanded');
-        }
-    </script>
+    <script src="/GudBuk/public/js/customerAdmin.js"></script>
 </body>
 
 </html>
