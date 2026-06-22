@@ -14,7 +14,7 @@ orderButton.addEventListener("click", function () {
 	})
 		.then(res => res.json())
 		.then(data => {
-			console.log(data);
+			alert("Order successfully!");
 			window.location.href = `orderView?orderid=${data}`
 		})
 		.catch(err => console.log(err));

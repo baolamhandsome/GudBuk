@@ -52,7 +52,7 @@ class User extends Dbcore
 
     public function getUserByOrderID($id)
     {
-        $sql = "SELECT customerid FROM orders WHERE orderid = $id  AND is_active = true ";
+        $sql = "SELECT customerid FROM orders WHERE orderid = $id";
         return $this->getOne($sql);
     }
 
