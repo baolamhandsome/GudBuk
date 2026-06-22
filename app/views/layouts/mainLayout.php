@@ -10,10 +10,10 @@ $viewFromRender = $view ?? null;
     <title>gudbuk</title>
 </head>
 
-<body>
+<body style="position: absolute; height: 100vh; width: 100vw;">
     <?php require_once "./app/views/fixed_components/header.php"; ?>
 
-    <div class="layout">
+    <div class="layout" style="height: 100%; width: auto">
         <main class="main">
             <?php require_once "./app/views/parts/$viewFromRender.php"; ?>
         </main>

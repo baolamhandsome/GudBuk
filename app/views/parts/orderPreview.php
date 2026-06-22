@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<link rel="stylesheet" href="/GudBuk/public/css/global.css">
 	<link rel="stylesheet" href="/GudBuk/public/css/orderPreview.css">
 </head>
-
 <body>
 	<div class="order-container">
 		<?php if (!empty($data)): ?>
+			<h1 class="order-title">Order Preview</h1>
 			<div class="order-list">
 				<?php foreach ($data as $entry): ?>
 					<div class="book-container">
@@ -34,5 +33,4 @@
 	</div>
 	<script type="text/javascript" src="/GudBuk/public/js/orderPreview.js"></script>
 </body>
-
 </html>

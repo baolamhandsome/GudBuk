@@ -1,46 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+:root {
+	--color-amber: #BD7C3F;
+	--color-amber-light: #ECB955;
+	--color-bg: #F6F4F1;
+	--color-card: #FFFFFF;
+	--color-dark-green: #1D3829;
+	--color-text: #20241F;
+	--color-text-light: #6B6F69;
+	--color-border: #E7E3DC;
+	--color-pill: #F1ECE3;
+}
+
+* {
+	font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
 .order-container {
-	height: 100vh;
-	width: 100vw;
-	background-color: #CFECF3;
+	min-height: 100vh;
+	width: 100%;
+	background-color: var(--color-bg);
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 	align-items: center;
+	padding: 50px 20px;
+	box-sizing: border-box;
+	color: var(--color-text);
+}
+
+.order-title {
+	font-size: 38px;
+	font-weight: 800;
+	color: var(--color-text);
+	margin: 0 0 28px;
+	text-align: center;
 }
 
 .order-list {
-	height: 90%;
+	height: auto;
+	max-height: 75vh;
 	width: 95%;
-	background-color: #7DAACB;
-
-	padding: 20px;
-	/* padding-top: 20px;
-	padding-bottom: 20px;
-	padding-left: 20px;
-	padding-right: 20px; */
+	max-width: 800px;
+	background-color: var(--color-card);
+	padding: 30px;
+	padding-bottom: 110px;
 	box-sizing: border-box;
+	border-radius: 16px;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
 
-	border-radius: 10px;
-	
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	row-gap: 10px;
-
+	row-gap: 14px;
 	overflow-y: auto;
 	position: relative;
 }
 
 .book-container {
-	height: 20%;
-	width: 97%;
-	background-color: #FFFDEB;
-	
+	height: auto;
+	width: 100%;
+	background-color: var(--color-bg);
+	border: 1px solid var(--color-border);
+
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-
-	border-radius: 10px;
-
-	padding: 20px;
+	border-radius: 12px;
+	padding: 20px 22px;
+	box-sizing: border-box;
+	transition: box-shadow .15s ease;
+}
+.book-container:hover {
+	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
 }
 
 .name-container {
@@ -49,9 +79,9 @@
 	display: flex;
 	justify-content: start;
 	align-items: center;
-
-	font-weight: bold;
-	font-size: 35px;
+	font-weight: 700;
+	font-size: 22px;
+	color: var(--color-text);
 }
 
 .price-container {
@@ -60,78 +90,79 @@
 	display: flex;
 	justify-content: end;
 	align-items: center;
-	
-	font-weight: bold;
-	font-size: 35px;
+
+	font-weight: 700;
+	font-size: 22px;
+	color: var(--color-amber);
 }
 
 .address-input {
-	height: 10%;
-	aspect-ratio: 6;
-	background-color: #FFFDEB;
-
+	height: 56px;
+	width: 60%;
+	max-width: 360px;
+	background-color: var(--color-pill);
+	border: 1px solid var(--color-border);
 	position: absolute;
-	bottom: 0;
-	left: 0;
-
-	border-radius: 0 10px 0 0;
+	bottom: 22px;
+	left: 22px;
+	border-radius: 10px;
 	box-shadow: none;
 	outline: none;
-	border: none;
-
-	padding-left: 10px;
-
-	font-size: 25px;
+	padding-left: 16px;
+	padding-right: 16px;
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--color-text);
+	box-sizing: border-box;
 }
-
+.address-input::placeholder {
+	color: var(--color-text-light);
+}
 .address-input:focus {
 	outline: none;
+	border-color: var(--color-amber);
 }
 
 .order-button-container {
-	height: 10%;
-	aspect-ratio: 7;
-	background-color: #FFFDEB;
-
+	height: 56px;
+	display: flex;
+	align-items: center;
+	column-gap: 12px;
 	position: absolute;
-	bottom: 0;
-	right: 0;
-
-	border-radius: 10px 0 0 0;
+	bottom: 22px;
+	right: 22px;
 }
 
 .total-price {
 	height: 100%;
-	width: 30%;
-	background-color: #FFFDEB;
+	background-color: var(--color-pill);
+	border: 1px solid var(--color-border);
+	border-radius: 10px;
 
-	border-radius: 10px 0 0 0;
-	
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
-	font-size: 25px;
-	font-weight: bold;
+	padding: 0 18px;
+	font-size: 18px;
+	font-weight: 700;
+	color: var(--color-text);
+	white-space: nowrap;
 }
 
 .order-button {
 	height: 100%;
-	width: 70%;
-	background-color: #2FA084;
-
-	position: absolute;
-	bottom: 0;
-	right: 0;
-
+	background-color: var(--color-dark-green);
+	color: #FFFFFF;
 	border: none;
-	
-	font-size: 25px;
-	font-weight: bold;
-}
+	border-radius: 10px;
+	padding: 0 32px;
 
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+}
 .order-button:hover {
-	filter: brightness(0.8);
+	filter: brightness(0.88);
 }
 
 .incorrect {
@@ -139,11 +170,11 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #FF6060;
-	border-radius: 10px;
+	background-color: #F4B5B5;
+	border-radius: 12px;
+	color: #7A2020;
 }
-
 .incorrect-label {
-	font-size: 30px;
+	font-size: 28px;
+	font-weight: 700;
 }
-

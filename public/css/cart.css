@@ -1,45 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+:root {
+	--color-amber: #BD7C3F;
+	--color-amber-light: #ECB955;
+	--color-bg: #F6F4F1;
+	--color-card: #FFFFFF;
+	--color-dark-green: #1D3829;
+	--color-text: #20241F;
+	--color-text-light: #6B6F69;
+	--color-border: #E7E3DC;
+	--color-red: #D75656;
+	--color-pill: #F1ECE3;
+}
+
+* {
+	font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
 /* khi nào .cart-web nằm trong một div khác thì sửa height width thành 100%*/
 .cart-web {
-	height: 100vh;
-	width: 100vw;
-	background-color: #CFECF3;
+	min-height: 100vh;
+	width: 100%;
+	background-color: var(--color-bg);
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 	align-items: center;
+	padding: 50px 20px;
+	box-sizing: border-box;
+	color: var(--color-text);
+}
+
+.cart-title {
+	font-size: 38px;
+	font-weight: 800;
+	color: var(--color-text);
+	margin: 0 0 28px;
+	text-align: center;
 }
 
 .books-container {
-	height: 90%;
+	height: auto;
+	max-height: 80vh;
 	width: 95%;
-	background-color: #7DAACB;
-
-	padding: 20px;
+	max-width: 900px;
+	background-color: var(--color-card);
+	padding: 30px;
+	padding-bottom: 100px;
 	box-sizing: border-box;
+	border-radius: 16px;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
 
-	border-radius: 10px;
-	
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	row-gap: 10px;
-
+	row-gap: 14px;
 	overflow-y: auto;
 	position: relative;
-
 	font-size: 15px;
 }
 
 .book {
 	width: 100%;
-	background-color: #FFFDEB;
-
-	padding: 10px;
+	background-color: var(--color-bg);
+	border: 1px solid var(--color-border);
+	padding: 18px 20px;
 	box-sizing: border-box;
-
-	border-radius: 6px;
-
+	border-radius: 12px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	transition: box-shadow .15s ease;
+}
+.book:hover {
+	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
 }
 
 .book-information {
@@ -48,16 +80,23 @@
 }
 
 .book-name {
-	margin: 5px;
+	margin: 0 0 8px;
+	font-size: 19px;
+	font-weight: 700;
+	color: var(--color-text);
 }
 
 .book-author, .book-ISBM {
-	margin: 10px;
-	margin-left: 5px;
+	margin: 0 0 6px;
+	margin-left: 0;
+	font-size: 14px;
+	color: var(--color-text-light);
 }
 
 .author-display, .ISBM-display {
 	display: inline;
+	font-weight: 700;
+	color: var(--color-text);
 }
 
 .order-information {
@@ -70,22 +109,26 @@
 }
 
 .book-tick {
-	height: 30px;
+	height: 22px;
 	aspect-ratio: 1;
 	margin: 0;
+	accent-color: var(--color-amber);
+	cursor: pointer;
 }
 
 .book-remove {
 	height: 30px;
 	aspect-ratio: 1;
 	margin: 0;
-	background-color: #D75656;
-	border-radius: 5px;
+	background-color: var(--color-red);
+	color: #FFFFFF;
+	border-radius: 8px;
 	border-width: 0px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-weight: 700;
+	cursor: pointer;
 }
 
 .book-quantity {
@@ -93,45 +136,52 @@
 	width: 100%;
 	display: flex;
 	justify-content: end;
-	column-gap: 10px;
+	column-gap: 8px;
 }
 
 .quantity-decrease, .quantity-display, .quantity-increase {
 	height: 100%;
 	aspect-ratio: 1;
-	background-color: #B4D3D9;
-	border-radius: 5px;
+	background-color: var(--color-pill);
+	border: 1px solid var(--color-border);
+	border-radius: 8px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-weight: 600;
+	color: var(--color-text);
+}
+
+.quantity-decrease, .quantity-increase {
+	cursor: pointer;
+	font-weight: 700;
 }
 
 .book-remove:hover, .quantity-decrease:hover, .quantity-increase:hover {
-	filter: brightness(0.8)
+	filter: brightness(0.9);
 }
 
 .order-button {
 	position: absolute;
-	right: 0;
-	bottom: 0;
-	background-color: #2FA084;
-
-	height: 10%;
-	aspect-ratio: 4;
-
-	border-radius: 5px 0px 0px 0px;
+	right: 25px;
+	bottom: 25px;
+	background-color: var(--color-dark-green);
+	color: #FFFFFF;
+	height: 52px;
+	width: auto;
+	padding: 0 32px;
+	aspect-ratio: unset;
+	border-radius: 10px;
 	border-width: 0px;
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
-	font-weight: bold;
-	font-size: 20px;
+	font-weight: 700;
+	font-size: 16px;
+	cursor: pointer;
 }
-
 .order-button:hover {
-	filter: brightness(0.8);
+	filter: brightness(0.88);
 }
 
 .incorrect {
@@ -139,10 +189,11 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #FF6060;
-	border-radius: 10px;
+	background-color: #F4B5B5;
+	border-radius: 12px;
+	color: #7A2020;
 }
-
 .incorrect-label {
-	font-size: 30px;
+	font-size: 28px;
+	font-weight: 700;
 }
